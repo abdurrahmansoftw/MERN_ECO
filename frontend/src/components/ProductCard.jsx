@@ -22,12 +22,6 @@ const ProductCard = ({ product }) => {
           <Typography variant='body2' color='text.secondary'>
             {description}
           </Typography>
-          <Button size='small' color='primary'>
-            {rating}
-          </Button>
-          <Button size='small' color='primary'>
-            {numReviews}
-          </Button>
         </CardContent>
       </CardActionArea>
       <CardActions sx={{ display: 'flex', justifyContent: 'space-between' }}>
