@@ -25,14 +25,20 @@ const ProductCard = ({ product }) => {
           <Typography variant='body2' color='text.secondary'>
             {product.description}
           </Typography>
+          <Button size='small' color='primary'>
+            {product.rating}
+          </Button>
+          <Button size='small' color='primary'>
+            {product.numReviews}
+          </Button>
         </CardContent>
       </CardActionArea>
-      <CardActions>
-        <Button size='small' color='primary'>
-          {product.rating}
+      <CardActions sx={{ display: 'flex', justifyContent: 'space-between' }}>
+        <Button size='small' color='primary' variant='contained'>
+          Add to Cart
         </Button>
-        <Button size='small' color='primary'>
-          {product.category}
+        <Button size='small' color='primary' variant='contained'>
+          Details
         </Button>
       </CardActions>
     </Card>
