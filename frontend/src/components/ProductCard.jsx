@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart'
 import {
   Button,
   Card,
@@ -15,13 +14,13 @@ import Rating from './Rating'
 import { Link } from 'react-router-dom'
 
 const ProductCard = ({ product }) => {
-  const { name, image, description, rating, numReviews } = product
+  const { _id, name, image, price, description, rating, numReviews } = product
   return (
-    <Card component={Link} to={`/products/${product._id}`}>
-      <CardActionArea>
+    <Card>
+      <CardActionArea component={Link} to={`/products/${_id}`}>
         <CardMedia component='img' height='200' image={image} alt={name} />
         <CardContent>
-          <Typography gutterBottom variant='h5' component='div'>
+          <Typography gutterBottom variant='h6' component='div'>
             {name}
           </Typography>
           <Typography variant='body2' color='text.secondary'>
@@ -30,10 +29,9 @@ const ProductCard = ({ product }) => {
         </CardContent>
       </CardActionArea>
       <CardActions sx={{ display: 'flex', justifyContent: 'space-between' }}>
-        <Button size='small' color='primary' variant='text'>
-          <AddShoppingCartIcon />
+        <Button size='large' color='primary' variant='text'>
+          ${price}
         </Button>
-
         <Rating value={rating} text={`${numReviews} reviews`} />
       </CardActions>
     </Card>
