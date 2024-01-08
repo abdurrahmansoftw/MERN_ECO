@@ -5,15 +5,13 @@ import Navbar from '../components/Navbar'
 
 const Layout = () => {
   return (
-    <div>
+    <Box>
+      <Navbar />
       <Box>
-        <Navbar />
-        <Box>
-          <Outlet />
-        </Box>
-        <Footer />
+        <Outlet />
       </Box>
-    </div>
+      <Footer />
+    </Box>
   )
 }
 
