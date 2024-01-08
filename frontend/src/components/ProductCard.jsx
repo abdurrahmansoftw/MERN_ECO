@@ -1,7 +1,8 @@
 import {
-  Box,
   Button,
   Card,
+  CardActionArea,
+  CardActions,
   CardContent,
   CardMedia,
   Typography,
@@ -9,28 +10,31 @@ import {
 
 const ProductCard = ({ product }) => {
   return (
-    <Card>
-      <CardMedia
-        image={product.name} // Replace with the actual image source
-        title={product.name}
-      />
-      <CardContent>
-        <Typography variant='h6' component='div'>
-          {product.name}
-        </Typography>
-        <Typography variant='body2' color='text.secondary'>
-          {product.description}
-        </Typography>
-
-        <Box>
-          <Button variant='contained' color='primary'>
-            Add to Cart
-          </Button>
-          <Button variant='outlined' color='primary'>
-            Details
-          </Button>
-        </Box>
-      </CardContent>
+    <Card sx={{ maxWidth: '100%' }}>
+      <CardActionArea>
+        <CardMedia
+          component='img'
+          height='140'
+          image={product.image}
+          alt={product.name}
+        />
+        <CardContent>
+          <Typography gutterBottom variant='h5' component='div'>
+            {product.name}
+          </Typography>
+          <Typography variant='body2' color='text.secondary'>
+            {product.description}
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+      <CardActions>
+        <Button size='small' color='primary'>
+          {product.price}
+        </Button>
+        <Button size='small' color='primary'>
+          {product.category}
+        </Button>
+      </CardActions>
     </Card>
   )
 }
