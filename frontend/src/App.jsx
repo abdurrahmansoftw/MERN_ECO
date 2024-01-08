@@ -1,13 +1,11 @@
-import Footer from './Components/Footer'
-import Nabvar from './Components/Nabvar'
+import Navbar from './components/Navbar'
 import HomeScreen from './Screens/HomeScreen'
 
 const App = () => {
   return (
     <div>
-      <Nabvar />
+      <Navbar />
       <HomeScreen />
-      <Footer />
     </div>
   )
 }

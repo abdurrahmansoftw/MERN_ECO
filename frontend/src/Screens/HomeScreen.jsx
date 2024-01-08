@@ -1,34 +1,20 @@
-import { Box, Container, Grid, Paper } from '@mui/material'
-import { styled } from '@mui/material/styles'
-
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-}))
+import { Container, Grid, Typography } from '@mui/material'
+import ProductCard from '../components/ProductCard'
+import products from '../products'
 
 const HomeScreen = () => {
   return (
     <Container>
-      <h1>Latest Products </h1>
-      <Box sx={{ flexGrow: 1 }}>
-        <Grid container spacing={2}>
-          <Grid item xs={8}>
-            <Item>xs=8</Item>
+      <Typography variant='h4' component='div' gutterBottom>
+        My Product Grid
+      </Typography>
+      <Grid container spacing={2}>
+        {products.map((product, index) => (
+          <Grid item key={index} xs={12} sm={6} md={4} lg={3}>
+            <ProductCard product={product} />
           </Grid>
-          <Grid item xs={4}>
-            <Item>xs=4</Item>
-          </Grid>
-          <Grid item xs={4}>
-            <Item>xs=4</Item>
-          </Grid>
-          <Grid item xs={8}>
-            <Item>xs=8</Item>
-          </Grid>
-        </Grid>
-      </Box>
+        ))}
+      </Grid>
     </Container>
   )
 }
