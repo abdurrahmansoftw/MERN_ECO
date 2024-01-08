@@ -5,7 +5,7 @@ import products from '../products'
 const HomeScreen = () => {
   return (
     <Container sx={{ my: 5 }}>
-      <Typography variant='h4' component='div' gutterBottom>
+      <Typography variant='h4' gutterBottom>
         My Product Grid
       </Typography>
       <Grid container spacing={2}>

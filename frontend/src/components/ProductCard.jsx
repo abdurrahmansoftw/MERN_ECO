@@ -13,7 +13,7 @@ import {
 import { Link } from 'react-router-dom'
 
 const ProductCard = ({ product }) => {
-  const { name, image, description, rating, numReviews } = product
+  const { name, image, description } = product
   return (
     <Card>
       <CardActionArea>
@@ -35,7 +35,7 @@ const ProductCard = ({ product }) => {
           size='small'
           color='primary'
           component={Link}
-          to={`/product/${product._id}`}
+          to={`/products/${product._id}`}
           variant='contained'>
           Details
         </Button>
