@@ -1,12 +1,14 @@
-import Footer from './components/Footer'
-import Navbar from './components/Navbar'
+import Footer from './Components/Footer'
+import Nabvar from './Components/Nabvar'
+import HomeScreen from './Screens/HomeScreen'
 
 const App = () => {
   return (
-    <>
-      <Navbar />
+    <div>
+      <Nabvar />
+      <HomeScreen />
       <Footer />
-    </>
+    </div>
   )
 }
 

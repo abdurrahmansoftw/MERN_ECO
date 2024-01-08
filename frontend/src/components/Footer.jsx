@@ -1,11 +1,5 @@
 const Footer = () => {
-  return (
-    <div>
-      <p className='text-center'>
-        Logo &copy; Abdur Rahman {new Date().toLocaleDateString}
-      </p>
-    </div>
-  )
+  return <div>Footer</div>
 }
 
 export default Footer
