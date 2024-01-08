@@ -1,7 +1,11 @@
-import React from 'react'
+const express = require('express')
+const app = express()
+const port = 3000
 
-const server = () => {
-  return <div>server</div>
-}
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
 
-export default server
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+})
