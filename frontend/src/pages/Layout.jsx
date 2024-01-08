@@ -6,7 +6,7 @@ const Layout = () => {
   return (
     <div>
       <Navbar />
-      <Box sx={{ py: 3 }}>
+      <Box>
         <Outlet />
       </Box>
     </div>
