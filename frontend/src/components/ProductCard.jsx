@@ -9,27 +9,23 @@ import {
 } from '@mui/material'
 
 const ProductCard = ({ product }) => {
+  const { name, image, description, rating, numReviews } = product
   return (
-    <Card sx={{ maxWidth: '100%' }}>
+    <Card>
       <CardActionArea>
-        <CardMedia
-          component='img'
-          height='140'
-          image={product.image}
-          alt={product.name}
-        />
+        <CardMedia component='img' height='200' image={image} alt={name} />
         <CardContent>
           <Typography gutterBottom variant='h5' component='div'>
-            {product.name}
+            {name}
           </Typography>
           <Typography variant='body2' color='text.secondary'>
-            {product.description}
+            {description}
           </Typography>
           <Button size='small' color='primary'>
-            {product.rating}
+            {rating}
           </Button>
           <Button size='small' color='primary'>
-            {product.numReviews}
+            {numReviews}
           </Button>
         </CardContent>
       </CardActionArea>
