@@ -1,5 +1,4 @@
 import {
-  Box,
   Button,
   CardMedia,
   Container,
@@ -30,49 +29,47 @@ const ProductScreen = () => {
           />
         </Grid>
         <Grid item xs={12} md={4}>
-          <Box sx={{}}>
-            <Paper aria-label='main mailbox folders'>
-              <List>
-                <ListItem disablePadding>
-                  <ListItemButton>
-                    <ListItemText primary={product.name} />
-                  </ListItemButton>
-                </ListItem>
-                <Divider />
-                <ListItem disablePadding>
-                  <ListItemButton>
-                    <ListItemText primary={product.description} />
-                  </ListItemButton>
-                </ListItem>
-                <Divider />
-                <ListItem disablePadding>
-                  <ListItemButton>
-                    <ListItemText primary={product.brand} />
-                  </ListItemButton>
-                </ListItem>
-                <Divider />
-                <ListItem disablePadding>
-                  <ListItemButton>
-                    <ListItemText primary={product.category} />
-                  </ListItemButton>
-                </ListItem>
+          <Paper aria-label='main mailbox folders' elevation={0}>
+            <List>
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemText primary={product.name} />
+                </ListItemButton>
+              </ListItem>
+              <Divider />
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemText primary={product.description} />
+                </ListItemButton>
+              </ListItem>
+              <Divider />
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemText primary={product.brand} />
+                </ListItemButton>
+              </ListItem>
+              <Divider />
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemText primary={product.category} />
+                </ListItemButton>
+              </ListItem>
 
-                <Divider />
-                <ListItem disablePadding>
-                  <ListItemButton>
-                    <Rating
-                      value={product.rating}
-                      text={`${product.numReviews} reviews`}
-                    />
-                  </ListItemButton>
-                </ListItem>
-              </List>
-            </Paper>
-            <Divider />
-          </Box>
+              <Divider />
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <Rating
+                    value={product.rating}
+                    text={`${product.numReviews} reviews`}
+                  />
+                </ListItemButton>
+              </ListItem>
+            </List>
+          </Paper>
+          <Divider />
         </Grid>
         <Grid item xs={12} md={3}>
-          <Paper aria-label='main mailbox folders'>
+          <Paper aria-label='main mailbox folders' elevation={1}>
             <List sx={{ display: 'flex', justifyContent: 'space-between' }}>
               <ListItem disablePadding>
                 <ListItemButton>
@@ -82,7 +79,7 @@ const ProductScreen = () => {
               <Divider />
               <ListItem disablePadding>
                 <ListItemButton>
-                  <ListItemText primary={product.price} />
+                  <ListItemText> ${product.price}</ListItemText>
                 </ListItemButton>
               </ListItem>
             </List>
@@ -95,15 +92,14 @@ const ProductScreen = () => {
               <Divider />
               <ListItem disablePadding>
                 <ListItemButton>
-                  <ListItemText
-                    primary={
-                      product.countInStock > 0 ? 'In Stock' : 'Out of Stock'
-                    }
-                  />
+                  <ListItemText>
+                    {product.countInStock > 0 ? 'In Stock' : 'Out of Stock'}
+                  </ListItemText>
                 </ListItemButton>
               </ListItem>
             </List>
             <Button
+              disabled={product.countInStock === 0}
               variant='contained'
               color='info'
               sx={{ display: 'block', width: '100%' }}>
