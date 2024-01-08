@@ -10,12 +10,14 @@ import {
   Typography,
 } from '@mui/material'
 
+import Rating from './Rating'
+
 import { Link } from 'react-router-dom'
 
 const ProductCard = ({ product }) => {
-  const { name, image, description } = product
+  const { name, image, description, rating, numReviews } = product
   return (
-    <Card>
+    <Card component={Link} to={`/products/${product._id}`}>
       <CardActionArea>
         <CardMedia component='img' height='200' image={image} alt={name} />
         <CardContent>
@@ -31,14 +33,8 @@ const ProductCard = ({ product }) => {
         <Button size='small' color='primary' variant='text'>
           <AddShoppingCartIcon />
         </Button>
-        <Button
-          size='small'
-          color='primary'
-          component={Link}
-          to={`/products/${product._id}`}
-          variant='contained'>
-          Details
-        </Button>
+
+        <Rating value={rating} text={`${numReviews} reviews`} />
       </CardActions>
     </Card>
   )

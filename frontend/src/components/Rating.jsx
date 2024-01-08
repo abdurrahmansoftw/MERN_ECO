@@ -1,4 +1,7 @@
-import { StarBorderIcon, StarHalfIcon, StarIcon } from '@mui/icons-material/'
+import StarIcon from '@mui/icons-material/Star'
+import StarBorderIcon from '@mui/icons-material/StarBorder'
+import StarHalfIcon from '@mui/icons-material/StarHalf'
+
 import { Box } from '@mui/material'
 
 const Rating = ({ value, text }) => {
