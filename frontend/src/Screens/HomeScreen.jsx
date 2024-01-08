@@ -4,7 +4,7 @@ import products from '../products'
 
 const HomeScreen = () => {
   return (
-    <Container>
+    <Container sx={{ my: 5 }}>
       <Typography variant='h4' component='div' gutterBottom>
         My Product Grid
       </Typography>

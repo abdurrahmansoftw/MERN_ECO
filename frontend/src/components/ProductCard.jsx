@@ -29,7 +29,7 @@ const ProductCard = ({ product }) => {
       </CardActionArea>
       <CardActions>
         <Button size='small' color='primary'>
-          {product.price}
+          {product.rating}
         </Button>
         <Button size='small' color='primary'>
           {product.category}
