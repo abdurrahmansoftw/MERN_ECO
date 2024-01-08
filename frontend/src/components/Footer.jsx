@@ -1,7 +1,9 @@
 const Footer = () => {
   return (
     <div>
-      <p>Logo &copy; Abdur Rahman {new Date().toLocaleDateString}</p>
+      <p className='text-center'>
+        Logo &copy; Abdur Rahman {new Date().toLocaleDateString}
+      </p>
     </div>
   )
 }
