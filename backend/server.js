@@ -17,6 +17,7 @@ app.get('/', (req, res) => {
 
 app.use('/api/products', productRoutes)
 
+
 app.listen(port, () => {
   console.log(
     colors.rainbow(
