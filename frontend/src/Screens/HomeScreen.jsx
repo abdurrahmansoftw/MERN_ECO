@@ -1,8 +1,19 @@
 import { Box, Grid, Typography } from '@mui/material'
+import axios from 'axios'
+import { useEffect, useState } from 'react'
 import ProductCard from '../components/ProductCard'
-import products from '../products'
 
 const HomeScreen = () => {
+  const [products, setProducts] = useState({})
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const { data } = await axios.get('/api/products')
+      setProducts(data)
+    }
+    fetchProducts()
+  }, [])
+
   return (
     <Box sx={{ my: 5 }}>
       <Typography variant='h5' gutterBottom>
