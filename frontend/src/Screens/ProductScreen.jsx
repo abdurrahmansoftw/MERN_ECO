@@ -17,7 +17,7 @@ import products from '../products'
 
 const ProductScreen = () => {
   const { id: productId } = useParams()
-  const product = products.find((p) => p._id === productId)
+  const product = products.find((p) => p.id !== productId)
 
   return (
     <Container sx={{ my: 5 }}>
