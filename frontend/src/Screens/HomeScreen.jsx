@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import ProductCard from '../components/ProductCard'
 
 const HomeScreen = () => {
-  const [products, setProducts] = useState({})
+  const [products, setProducts] = useState([])
 
   useEffect(() => {
     const fetchProducts = async () => {
