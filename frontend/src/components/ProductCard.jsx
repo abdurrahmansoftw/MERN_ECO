@@ -17,7 +17,7 @@ const ProductCard = ({ product }) => {
   const { _id, name, image, price, description, rating, numReviews } = product
   return (
     <Card>
-      <CardActionArea component={Link} to={`/products/${_id}`}>
+      <CardActionArea component={Link} to={`/product/${_id}`}>
         <CardMedia component='img' height='200' image={image} alt={name} />
         <CardContent>
           <Typography gutterBottom variant='h6' component='div'>

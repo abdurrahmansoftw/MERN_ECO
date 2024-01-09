@@ -16,7 +16,7 @@ import Rating from '../components/Rating'
 import { useGetProductDetailsQuery } from '../slices/productsApiSlice'
 
 const ProductScreen = () => {
-  const { _id: productId } = useParams()
+  const { id: productId } = useParams()
 
   const {
     data: product,
