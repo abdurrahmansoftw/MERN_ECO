@@ -11,22 +11,25 @@ import {
   Paper,
   Typography,
 } from '@mui/material'
-import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Rating from '../components/Rating'
+import { useGetProductDetailsQuery } from '../slices/productsApiSlice'
 
 const ProductScreen = () => {
-  const [product, setProduct] = useState({})
-  const { id: productId } = useParams()
+  const { _id: productId } = useParams()
 
-  useEffect(() => {
-    const fetchProduct = async () => {
-      const res = await fetch(`/api/products/${productId}`)
-      const data = await res.json()
-      setProduct(data)
-    }
-    fetchProduct()
-  })
+  const {
+    data: product,
+    isLoading,
+    error,
+  } = useGetProductDetailsQuery(productId)
+
+  if (product) {
+    console.log(product)
+  }
+
+  if (isLoading) return <div>Loading...</div>
+  if (error) return <div>{error.status}</div>
 
   return (
     <Container sx={{ my: 5 }}>
