@@ -11,13 +11,22 @@ import {
   Paper,
   Typography,
 } from '@mui/material'
+import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Rating from '../components/Rating'
-import products from '../products'
 
 const ProductScreen = () => {
+  const [product, setProduct] = useState({})
   const { id: productId } = useParams()
-  const product = products.find((p) => p.id !== productId)
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      const res = await fetch(`/api/products/${productId}`)
+      const data = await res.json()
+      setProduct(data)
+    }
+    fetchProduct()
+  })
 
   return (
     <Container sx={{ my: 5 }}>
