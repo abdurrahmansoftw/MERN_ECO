@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
-    <div>
-      {`${new Date().getFullYear()} AbdurRahman. All rights reserved.}`}
+    <div className='text-center'>
+      {`AbdurRahman ${new Date().getFullYear()} . All rights reserved.`}
     </div>
   )
 }

@@ -1,10 +1,10 @@
-import { Container, Grid, Typography } from '@mui/material'
+import { Box, Grid, Typography } from '@mui/material'
 import ProductCard from '../components/ProductCard'
 import products from '../products'
 
 const HomeScreen = () => {
   return (
-    <Container sx={{ my: 5 }}>
+    <Box sx={{ my: 5 }}>
       <Typography variant='h5' gutterBottom>
         Latest Product List
       </Typography>
@@ -15,7 +15,7 @@ const HomeScreen = () => {
           </Grid>
         ))}
       </Grid>
-    </Container>
+    </Box>
   )
 }
 
