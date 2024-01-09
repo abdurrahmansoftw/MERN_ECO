@@ -1,5 +1,9 @@
 const Footer = () => {
-  return <div>Footer</div>
+  return (
+    <div>
+      {`${new Date().getFullYear()} AbdurRahman. All rights reserved.}`}
+    </div>
+  )
 }
 
 export default Footer

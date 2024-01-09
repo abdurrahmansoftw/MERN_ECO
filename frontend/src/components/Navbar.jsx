@@ -11,7 +11,7 @@ const Navbar = () => {
             component={Link}
             hrf={'/'}
             sx={{ flexGrow: 1 }}>
-            LOGO
+            MERN SHOP
           </Typography>
           <Button color='inherit'>Cart</Button>
           <Button color='inherit'>Login</Button>
