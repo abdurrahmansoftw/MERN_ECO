@@ -9,6 +9,7 @@ import {
   ListItemButton,
   ListItemText,
   Paper,
+  Typography,
 } from '@mui/material'
 import { useParams } from 'react-router-dom'
 import Rating from '../components/Rating'
@@ -33,7 +34,11 @@ const ProductScreen = () => {
             <List>
               <ListItem disablePadding>
                 <ListItemButton>
-                  <ListItemText primary={product.name} />
+                  <ListItemText>
+                    <Typography variant='h5' component='h1'>
+                      {product.name}
+                    </Typography>
+                  </ListItemText>
                 </ListItemButton>
               </ListItem>
               <Divider />
