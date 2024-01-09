@@ -24,10 +24,6 @@ const ProductScreen = () => {
     error,
   } = useGetProductDetailsQuery(productId)
 
-  if (product) {
-    console.log(product)
-  }
-
   if (isLoading) return <div>Loading...</div>
   if (error) return <div>{error.status}</div>
 
