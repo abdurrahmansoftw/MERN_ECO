@@ -8,11 +8,11 @@ const HomeScreen = () => {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const { data } = await axios.get('http://localhost:5000/api/products')
+      const { data } = await axios.get('/api/products')
       setProducts(data)
     }
     fetchProducts()
-  }, [])
+  }, [products])
 
   return (
     <Box sx={{ my: 5 }}>
