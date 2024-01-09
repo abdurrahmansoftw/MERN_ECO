@@ -1,3 +1,4 @@
+import colors from 'colors'
 import dotenv from 'dotenv'
 import express from 'express'
 import products from './data/products.js'
@@ -23,5 +24,9 @@ app.get('/api/products/:id', (req, res) => {
 })
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
+  console.log(
+    colors.rainbow(
+      `Server is running on port http://localhost:${process.env.PORT}`
+    )
+  )
 })
