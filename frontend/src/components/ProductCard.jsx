@@ -6,7 +6,6 @@ import {
   CardActions,
   CardContent,
   CardMedia,
-  Stack,
   Typography,
 } from '@mui/material'
 
@@ -17,7 +16,7 @@ import { Link } from 'react-router-dom'
 const ProductCard = ({ product }) => {
   const { _id, name, image, price, description, rating, numReviews } = product
   return (
-    <Card component={Stack} spacing={5} sx={{ borderRadius: 2 }}>
+    <Card>
       <CardActionArea component={Link} to={`/products/${_id}`}>
         <CardMedia component='img' height='200' image={image} alt={name} />
         <CardContent>

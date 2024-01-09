@@ -21,7 +21,7 @@ const HomeScreen = () => {
       </Typography>
       <Grid container spacing={2}>
         {products.map((product, index) => (
-          <Grid item key={index} xs={12} sm={6} md={4} lg={4}>
+          <Grid item key={index} xs={12} sm={6} md={4} lg={4} xl={3}>
             <ProductCard product={product} />
           </Grid>
         ))}
