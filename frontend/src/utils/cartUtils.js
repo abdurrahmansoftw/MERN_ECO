@@ -24,5 +24,3 @@ export const updateCart = (state) => {
 
   return state
 }
-
-export default updateCart
