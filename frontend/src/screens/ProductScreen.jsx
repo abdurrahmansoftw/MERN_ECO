@@ -15,12 +15,16 @@ import {
   Typography,
 } from '@mui/material'
 import { useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { useNavigate, useParams } from 'react-router-dom'
 import Rating from '../components/Rating'
+import { addToCart } from '../slices/cartSlice'
 import { useGetProductDetailsQuery } from '../slices/productsApiSlice'
 
 const ProductScreen = () => {
   const { id: productId } = useParams()
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const [qty, setQty] = useState(1)
 
@@ -29,6 +33,11 @@ const ProductScreen = () => {
     isLoading,
     error,
   } = useGetProductDetailsQuery(productId)
+
+  const addTocardHandler = () => {
+    dispatch(addToCart({ ...product, qty }))
+    navigate('/cart')
+  }
 
   if (isLoading) return <div>Loading...</div>
   if (error) return <div>{error.status}</div>
@@ -88,7 +97,7 @@ const ProductScreen = () => {
           <Divider />
         </Grid>
         <Grid item xs={12} md={3}>
-          <Paper aria-label='main mailbox folders' elevation={1}>
+          <Paper aria-label='main mailbox folders' elevation={0}>
             <List sx={{ display: 'flex', justifyContent: 'space-between' }}>
               <ListItem disablePadding>
                 <ListItemButton>
@@ -148,6 +157,8 @@ const ProductScreen = () => {
             )}
 
             <Button
+              onClick={addTocardHandler}
+              elevation={0}
               disabled={product.countInStock === 0}
               variant='contained'
               color='info'
