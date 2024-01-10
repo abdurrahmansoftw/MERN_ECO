@@ -4,12 +4,16 @@ import User from '../models/userModel.js'
 // @desc    Auth user & get token
 // @route   POST /api/users/auth
 // @access  Public
-const authUser = asyncHandler(async (req, res) => {})
+const authUser = asyncHandler(async (req, res) => {
+  res.send('auth User')
+})
 
 // @desc    Register a new user
 // @route   POST /api/users
 // @access  Public
-const registerUser = asyncHandler(async (req, res) => {})
+const registerUser = asyncHandler(async (req, res) => {
+  res.send('register User')
+})
 
 // @desc    Logout user / clear cookie
 // @route   POST /api/users/logout
@@ -25,12 +29,16 @@ const logoutUser = (req, res) => {
 // @desc    Get user profile
 // @route   GET /api/users/profile
 // @access  Private
-const getUserProfile = asyncHandler(async (req, res) => {})
+const getUserProfile = asyncHandler(async (req, res) => {
+  res.send('get User Profile')
+})
 
 // @desc    Update user profile
 // @route   PUT /api/users/profile
 // @access  Private
-const updateUserProfile = asyncHandler(async (req, res) => {})
+const updateUserProfile = asyncHandler(async (req, res) => {
+  res.send('update User Profile')
+})
 
 // @desc    Get all users
 // @route   GET /api/users
@@ -43,17 +51,23 @@ const getUsers = asyncHandler(async (req, res) => {
 // @desc    Delete user
 // @route   DELETE /api/users/:id
 // @access  Private/Admin
-const deleteUser = asyncHandler(async (req, res) => {})
+const deleteUser = asyncHandler(async (req, res) => {
+  res.send('delete User')
+})
 
 // @desc    Get user by ID
 // @route   GET /api/users/:id
 // @access  Private/Admin
-const getUserById = asyncHandler(async (req, res) => {})
+const getUserById = asyncHandler(async (req, res) => {
+  res.send('get User By Id')
+})
 
 // @desc    Update user
 // @route   PUT /api/users/:id
 // @access  Private/Admin
-const updateUser = asyncHandler(async (req, res) => {})
+const updateUser = asyncHandler(async (req, res) => {
+  res.send('update User')
+})
 
 export {
   authUser,
