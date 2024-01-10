@@ -18,7 +18,7 @@ import {
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
-import { addToCart } from '../slices/cartSlice'
+import { addToCart, removeFromCart } from '../slices/cartSlice'
 
 const CartScreen = () => {
   const navigate = useNavigate()
@@ -29,6 +29,14 @@ const CartScreen = () => {
 
   const addToCartHandler = async (item, qty) => {
     dispatch(addToCart({ ...item, qty }))
+  }
+
+  const removeFromCartHandler = async (id) => {
+    dispatch(removeFromCart(id))
+  }
+
+  const checkoutHandler = () => {
+    navigate('/login?redirect=shipping')
   }
 
   return (
@@ -67,7 +75,7 @@ const CartScreen = () => {
                         {item.qty} x ${item.price} = ${item.qty * item.price}
                       </Typography>
                     </Grid>
-                    <Grid item xs={12} md={1}>
+                    <Grid item xs={12} md={2}>
                       <FormControl fullWidth size='small' variant='standard'>
                         <Select value={item.qty} onChange={(e) => addToCartHandler(item, Number(e.target.value))}>
                           {[...Array(item.countInStock).keys()].map((x) => (
@@ -79,7 +87,11 @@ const CartScreen = () => {
                       </FormControl>
                     </Grid>
                     <Grid item xs={12} md={1}>
-                      <Button variant='outlined' color='error' component={Link} to={`/product/${item.product}`}>
+                      <Button
+                        onClick={() => removeFromCartHandler(item._id)}
+                        variant='outlined'
+                        color='error'
+                        size='small'>
                         <DeleteIcon />
                       </Button>
                     </Grid>
@@ -111,10 +123,10 @@ const CartScreen = () => {
             <Divider />
 
             <Button
-              onClick={''}
+              onClick={checkoutHandler}
               elevation={0}
               variant='contained'
-              color='info'
+              color='success'
               disabled={cartItems.length === 0}
               sx={{ display: 'block', width: '100%' }}>
               Procced to Checkout
