@@ -29,6 +29,8 @@ const cartSlice = createSlice({
       state.itemsPrice = addDecimals(
         state.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
       )
+      // calculate shipping price
+      state.shippingPrice = addDecimals(state.itemsPrice > 100 ? 0 : 10)
 
       
     },
