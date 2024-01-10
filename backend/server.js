@@ -1,4 +1,5 @@
 import colors from 'colors'
+import cookieParser from 'cookie-parser'
 import dotenv from 'dotenv'
 import express from 'express'
 import connectDB from './database/database.js'
@@ -15,6 +16,9 @@ const app = express()
 // body parser middleware
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+
+// cookie parser middleware
+app.use(cookieParser())
 
 // routes middleware for home page
 app.get('/', (req, res) => {
