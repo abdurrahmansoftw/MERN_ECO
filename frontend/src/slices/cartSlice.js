@@ -12,7 +12,7 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    addTocart: (state, action) => {
+    addToCart: (state, action) => {
       const item = action.payload
 
       const existItem = state.cartItems.find((x) => x._id === item._id)
@@ -41,8 +41,12 @@ const cartSlice = createSlice({
         Number(state.shippingPrice) +
         Number(state.taxPrice)
       ).toFixed(2)
+
+      localStorage.setItem('cart', JSON.stringify(state))
     },
   },
 })
+
+export const { addToCart } = cartSlice.actions
 
 export default cartSlice.reducer

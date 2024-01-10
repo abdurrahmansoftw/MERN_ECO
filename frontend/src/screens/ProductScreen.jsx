@@ -3,20 +3,26 @@ import {
   CardMedia,
   Container,
   Divider,
+  FormControl,
   Grid,
   List,
   ListItem,
   ListItemButton,
   ListItemText,
+  MenuItem,
   Paper,
+  Select,
   Typography,
 } from '@mui/material'
+import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Rating from '../components/Rating'
 import { useGetProductDetailsQuery } from '../slices/productsApiSlice'
 
 const ProductScreen = () => {
   const { id: productId } = useParams()
+
+  const [qty, setQty] = useState(1)
 
   const {
     data: product,
@@ -96,6 +102,7 @@ const ProductScreen = () => {
                 </ListItemButton>
               </ListItem>
             </List>
+            <Divider />
             <List sx={{ display: 'flex', justifyContent: 'space-between' }}>
               <ListItem disablePadding>
                 <ListItemButton>
@@ -111,6 +118,35 @@ const ProductScreen = () => {
                 </ListItemButton>
               </ListItem>
             </List>
+            <Divider />
+            {product.countInStock > 0 && (
+              <List sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                <ListItem disablePadding>
+                  <ListItemButton>
+                    <ListItemText primary='Qty' />
+                  </ListItemButton>
+                </ListItem>
+                <Divider />
+                <ListItem disablePadding>
+                  <ListItemButton>
+                    <ListItemText>
+                      <FormControl fullWidth size='small' variant='standard'>
+                        <Select
+                          value={qty}
+                          onChange={(e) => setQty(e.target.value)}>
+                          {[...Array(product.countInStock).keys()].map((x) => (
+                            <MenuItem key={x + 1} value={x + 1}>
+                              {x + 1}
+                            </MenuItem>
+                          ))}
+                        </Select>
+                      </FormControl>
+                    </ListItemText>
+                  </ListItemButton>
+                </ListItem>
+              </List>
+            )}
+
             <Button
               disabled={product.countInStock === 0}
               variant='contained'
