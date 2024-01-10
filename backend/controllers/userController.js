@@ -15,15 +15,12 @@ const authUser = asyncHandler(async (req, res) => {
       expiresIn: '30d',
     })
 
-    // set JWT as HTTP
-    res.cookie('token', token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV !== 'production',
-      sameSite: 'strict',
-      maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+    res.json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      isAdmin: user.isAdmin,
     })
-
-    res.json({ _id: user._id, name: user.name, email: user.email, isAdmin: user.isAdmin })
   } else {
     res.status(401)
     throw new Error('Invalid email or password')
@@ -41,11 +38,11 @@ const registerUser = asyncHandler(async (req, res) => {
 // @route   POST /api/users/logout
 // @access  Public
 const logoutUser = (req, res) => {
-  res.clearCookie('jwt', '', {
+  res.cookie('jwt', '', {
     httpOnly: true,
     expires: new Date(0),
   })
-  res.status(200).json({ message: 'Logged out Successfully ' })
+  res.status(200).json({ message: 'Logged out successfully' })
 }
 
 // @desc    Get user profile
