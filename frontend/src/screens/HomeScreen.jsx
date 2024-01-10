@@ -11,9 +11,7 @@ const HomeScreen = () => {
       {isLoading ? (
         <ProductSkeleton />
       ) : error ? (
-        <Typography variant='body1'>
-          {error.data.message || error.error}
-        </Typography>
+        <Typography variant='body1'>{error.data.message || error.error}</Typography>
       ) : (
         <Box>
           <Typography variant='h5' gutterBottom>
