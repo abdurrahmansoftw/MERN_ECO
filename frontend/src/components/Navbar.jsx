@@ -10,12 +10,8 @@ const Navbar = () => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position='static' elevation={1}>
         <Toolbar>
-          <Typography
-            variant='h6'
-            component={Link}
-            hrf={'/'}
-            sx={{ flexGrow: 1 }}>
-            MERN SHOP
+          <Typography variant='h6' component={Link} hrf={'/'} sx={{ flexGrow: 1 }}>
+            Kingsman
           </Typography>
           <Button color='inherit' component={Link} to='/cart'>
             {cartItems.length === 0 ? (
@@ -24,10 +20,7 @@ const Navbar = () => {
               </Box>
             ) : (
               <Box>
-                <Badge
-                  sx={{ mr: 1 }}
-                  badgeContent={cartItems.reduce((a, c) => a + c.qty, 0)}
-                  color='success'>
+                <Badge sx={{ mr: 1 }} badgeContent={cartItems.reduce((a, c) => a + c.qty, 0)} color='success'>
                   <ShoppingCartIcon fontSize='small' />
                 </Badge>
                 Cart
