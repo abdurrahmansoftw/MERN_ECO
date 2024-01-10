@@ -1,4 +1,5 @@
 import { Box, Grid, Typography } from '@mui/material'
+import ProductSkeleton from '../Skeleton/ProductSkeleton'
 import ProductCard from '../components/ProductCard'
 import { useGetProductsQuery } from '../slices/productsApiSlice'
 
@@ -8,7 +9,7 @@ const HomeScreen = () => {
   return (
     <Box sx={{ my: 5 }}>
       {isLoading ? (
-        <Typography variant='body1'>Loading...</Typography>
+        <ProductSkeleton />
       ) : error ? (
         <Typography variant='body1'>
           {error.data.message || error.error}
