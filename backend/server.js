@@ -7,15 +7,15 @@ import productRoutes from './routes/productRoutes.js'
 import userRoutes from './routes/userRoutes.js'
 
 dotenv.config()
-const port = process.env.PORT || 5000
-
 connectDB()
 
+const port = process.env.PORT || 5000
 const app = express()
 
 // body parser middleware
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+app.use(cookieParser())
 
 // cookie parser middleware
 app.use(cookieParser())
