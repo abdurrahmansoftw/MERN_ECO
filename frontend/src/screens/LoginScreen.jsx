@@ -1,12 +1,12 @@
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { Avatar, Box, Button, Checkbox, FormControlLabel, Grid, TextField, Typography } from '@mui/material'
 import FromContainer from '../components/FromContainer'
 import CustomLink from '../components/Link'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useLoginMutation } from '../slices/usersApiSlice'
 
 const LoginScreen = () => {
@@ -17,9 +17,17 @@ const LoginScreen = () => {
   const navigate = useNavigate()
 
   const [login, { isLoading }] = useLoginMutation()
-
   const { userInfo } = useSelector((state) => state.auth)
-  
+
+  const { search } = useLocation()
+ 
+
+  useEffect(() => {
+    if (userInfo) {
+      navigate(redirect)
+    }
+  }, [navigate, redirect, userInfo])
+
   const handleSubmit = (event) => {
     event.preventDefault()
   }
