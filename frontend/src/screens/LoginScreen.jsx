@@ -16,8 +16,6 @@ const LoginScreen = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const [login, { isLoading }] = useLoginMutation()
-  const { userInfo } = useSelector((state) => state.auth)
 
   const handleSubmit = (event) => {
     event.preventDefault()
