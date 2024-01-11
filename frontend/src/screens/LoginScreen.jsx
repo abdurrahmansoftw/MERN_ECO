@@ -48,7 +48,7 @@ const LoginScreen = () => {
         </Button>
         <Grid container>
           <Grid item xs>
-            <CustomLink to='/' variant='body2'>
+            <CustomLink to='/forgotpassword' variant='body2'>
               Forgot password?
             </CustomLink>
           </Grid>
