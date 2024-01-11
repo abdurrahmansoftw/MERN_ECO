@@ -59,6 +59,8 @@ const LoginScreen = () => {
             id='email'
             label='Email Address'
             name='email'
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             autoComplete='email'
             autoFocus
           />
@@ -67,6 +69,8 @@ const LoginScreen = () => {
             required
             fullWidth
             name='password'
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             label='Password'
             type='password'
             id='password'
