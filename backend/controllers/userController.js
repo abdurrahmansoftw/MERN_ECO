@@ -64,6 +64,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
     throw new Error('User not found')
   }
 })
+
 // @desc    Update user profile
 // @route   PUT /api/users/profile
 // @access  Private
@@ -84,7 +85,6 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     throw new Error('User not found')
   }
 })
-
 
 // @desc    Get all users
 // @route   GET /api/users
