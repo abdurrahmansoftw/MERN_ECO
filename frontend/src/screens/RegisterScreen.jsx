@@ -1,18 +1,47 @@
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { Avatar, Box, Button, Checkbox, FormControlLabel, Grid, TextField, Typography } from '@mui/material'
 import FromContainer from '../components/FromContainer'
 import CustomLink from '../components/Link'
 
+import { useDispatch, useSelector } from 'react-redux'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import { setCredentials } from '../slices/authSlice'
+import { useLoginMutation } from '../slices/usersApiSlice'
+
 const RegisterScreen = () => {
-  const handleSubmit = (event) => {
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const [login, { isLoading }] = useLoginMutation()
+  const { userInfo } = useSelector((state) => state.auth)
+
+  const { search } = useLocation()
+  const sp = new URLSearchParams(search)
+  const redirect = sp.get('redirect') || '/'
+
+  useEffect(() => {
+    if (userInfo) {
+      navigate(redirect)
+    }
+  }, [navigate, redirect, userInfo])
+
+  const handleSubmit = async (event) => {
     event.preventDefault()
-    const data = new FormData(event.currentTarget)
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    })
+
+    try {
+      const response = await login({ email, password }).unwrap()
+      dispatch(setCredentials({ ...response }))
+      navigate(redirect)
+    } catch (error) {
+      toast.error(error?.data?.message || error?.error || 'Something went wrong!')
+    }
   }
   return (
     <FromContainer>
@@ -31,6 +60,8 @@ const RegisterScreen = () => {
             id='name'
             label='Name'
             name='name'
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             autoComplete='name'
             autoFocus
           />
@@ -41,6 +72,8 @@ const RegisterScreen = () => {
             id='email'
             label='Email Address'
             name='email'
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             autoComplete='email'
           />
           <TextField
@@ -48,6 +81,8 @@ const RegisterScreen = () => {
             required
             fullWidth
             name='password'
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             label='Password'
             type='password'
             id='password'
