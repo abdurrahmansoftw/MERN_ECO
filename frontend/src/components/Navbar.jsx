@@ -68,7 +68,7 @@ const Navbar = () => {
                 aria-haspopup='true'
                 aria-expanded={open ? 'true' : undefined}
                 onClick={handleClick}>
-                <AccountCircleIcon fontSize='small' /> {userInfo.name}
+                <AccountCircleIcon fontSize='small' /> Dashboard
               </Button>
               <Menu
                 id='fade-menu'
