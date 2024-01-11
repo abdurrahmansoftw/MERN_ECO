@@ -1,14 +1,32 @@
+/* eslint-disable react/jsx-no-duplicate-props */
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import { AppBar, Badge, Box, Button, Divider, Menu, MenuItem, Toolbar, Typography } from '@mui/material'
 import Fade from '@mui/material/Fade'
 import { useState } from 'react'
-import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
+import { logout } from '../slices/authSlice'
+import { useLogoutMutation } from '../slices/usersApiSlice'
 
 const Navbar = () => {
   const { cartItems } = useSelector((state) => state.cart)
   const { userInfo } = useSelector((state) => state.auth)
+
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const [logoutApiCall] = useLogoutMutation()
+
+  const logoutHandler = async () => {
+    try {
+      await logoutApiCall().unwrap()
+      dispatch(logout())
+      navigate('/login')
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   const [anchorEl, setAnchorEl] = useState(null)
   const open = Boolean(anchorEl)
@@ -62,7 +80,9 @@ const Navbar = () => {
                 <MenuItem onClick={handleClose}>{userInfo.name}</MenuItem>
                 <Divider />
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>Logout</MenuItem>
+                <MenuItem onClick={handleClose} onClick={logoutHandler}>
+                  Logout
+                </MenuItem>
               </Menu>
             </div>
           ) : (
