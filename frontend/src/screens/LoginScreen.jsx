@@ -1,18 +1,16 @@
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
-import React from 'react'
+import React, { useState } from 'react'
 
 import { Avatar, Box, Button, Checkbox, FormControlLabel, Grid, TextField, Typography } from '@mui/material'
 import FromContainer from '../components/FromContainer'
 import CustomLink from '../components/Link'
 
 const LoginScreen = () => {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
   const handleSubmit = (event) => {
     event.preventDefault()
-    const data = new FormData(event.currentTarget)
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    })
   }
   return (
     <FromContainer>
