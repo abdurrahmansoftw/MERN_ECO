@@ -1,7 +1,8 @@
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import React from 'react'
 
-import { Avatar, Box, Button, Checkbox, FormControlLabel, Grid, Link, TextField, Typography } from '@mui/material'
+import { Avatar, Box, Button, Checkbox, FormControlLabel, Grid, TextField, Typography } from '@mui/material'
+import CustomLink from '../components/Link'
 
 const LoginScreen = () => {
   const handleSubmit = (event) => {
@@ -47,14 +48,14 @@ const LoginScreen = () => {
         </Button>
         <Grid container>
           <Grid item xs>
-            <Link href='#' variant='body2'>
+            <CustomLink to='/' variant='body2'>
               Forgot password?
-            </Link>
+            </CustomLink>
           </Grid>
           <Grid item>
-            <Link to='/register' variant='body2'>
+            <CustomLink to='/register' variant='body2'>
               {"Don't have an account? Sign Up"}
-            </Link>
+            </CustomLink>
           </Grid>
         </Grid>
       </Box>
