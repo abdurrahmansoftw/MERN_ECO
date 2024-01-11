@@ -108,8 +108,8 @@ const RegisterScreen = () => {
               </CustomLink>
             </Grid>
             <Grid item>
-              <CustomLink to='/login' variant='body2'>
-                {'You have an account? Sign In'}
+              <CustomLink to={redirect ? `/login?redirect=${redirect}` : '/login'} variant='body2'>
+                {'Already have an account? Sign In'}
               </CustomLink>
             </Grid>
           </Grid>

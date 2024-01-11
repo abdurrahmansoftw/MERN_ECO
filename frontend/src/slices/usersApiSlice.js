@@ -14,7 +14,7 @@ export const usersApiSlice = apiSlice.injectEndpoints({
     register: builder.mutation({
       query: (data) => ({
         // eslint-disable-next-line no-undef
-        url: `${USERS_URL}/register`,
+        url: `${USERS_URL}`,
         method: 'POST',
         body: data,
       }),
