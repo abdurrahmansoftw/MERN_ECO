@@ -9,17 +9,18 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { setCredentials } from '../slices/authSlice'
-import { useLoginMutation } from '../slices/usersApiSlice'
+import { useRegisterMutation } from '../slices/usersApiSlice'
 
 const RegisterScreen = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassowrd] = useState('')
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const [login, { isLoading }] = useLoginMutation()
+  const [register, { isLoading }] = useRegisterMutation()
   const { userInfo } = useSelector((state) => state.auth)
 
   const { search } = useLocation()
@@ -35,12 +36,17 @@ const RegisterScreen = () => {
   const handleSubmit = async (event) => {
     event.preventDefault()
 
-    try {
-      const response = await login({ email, password }).unwrap()
-      dispatch(setCredentials({ ...response }))
-      navigate(redirect)
-    } catch (error) {
-      toast.error(error?.data?.message || error?.error || 'Something went wrong!')
+    if (password !== confirmPassword) {
+      toast.error('Passwords do not match!')
+      return
+    } else {
+      try {
+        const response = await register({ name, email, password }).unwrap()
+        dispatch(setCredentials({ ...response }))
+        navigate(redirect)
+      } catch (error) {
+        toast.error(error?.data?.message || error?.error || 'Something went wrong!')
+      }
     }
   }
   return (
@@ -57,9 +63,7 @@ const RegisterScreen = () => {
             margin='normal'
             required
             fullWidth
-            id='name'
             label='Name'
-            name='name'
             value={name}
             onChange={(e) => setName(e.target.value)}
             autoComplete='name'
@@ -69,9 +73,7 @@ const RegisterScreen = () => {
             margin='normal'
             required
             fullWidth
-            id='email'
             label='Email Address'
-            name='email'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             autoComplete='email'
@@ -80,12 +82,19 @@ const RegisterScreen = () => {
             margin='normal'
             required
             fullWidth
-            name='password'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             label='Password'
             type='password'
-            id='password'
+            autoComplete='current-password'
+          />
+          <TextField
+            margin='normal'
+            fullWidth
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassowrd(e.target.value)}
+            label='Confirm Password'
+            type='password'
             autoComplete='current-password'
           />
           <FormControlLabel control={<Checkbox value='remember' color='primary' />} label='Remember me' />
