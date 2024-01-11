@@ -29,8 +29,12 @@ const LoginScreen = () => {
     }
   }, [navigate, redirect, userInfo])
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
+
+    try {
+      const response = await login({ email, password }).unwrap()
+    } catch (error) {}
   }
   return (
     <FromContainer>
