@@ -3,6 +3,7 @@ import ErrorPage from '../pages/ErrorPage'
 import Layout from '../pages/Layout'
 import CartScreen from '../screens/CartScreen'
 import HomeScreen from '../screens/HomeScreen'
+import LoginScreen from '../screens/LoginScreen'
 import ProductScreen from '../screens/ProductScreen'
 
 const router = createBrowserRouter([
@@ -14,6 +15,7 @@ const router = createBrowserRouter([
       { index: true, element: <HomeScreen /> },
       { path: 'product/:id', element: <ProductScreen /> },
       { path: 'cart', element: <CartScreen /> },
+      { path: 'login', element: <LoginScreen /> },
     ],
   },
 ])
