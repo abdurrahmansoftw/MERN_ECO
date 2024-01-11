@@ -7,6 +7,8 @@ import CustomLink from '../components/Link'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import { setCredentials } from '../slices/authSlice'
 import { useLoginMutation } from '../slices/usersApiSlice'
 
 const LoginScreen = () => {
@@ -34,7 +36,11 @@ const LoginScreen = () => {
 
     try {
       const response = await login({ email, password }).unwrap()
-    } catch (error) {}
+      dispatch(setCredentials({ ...response }))
+      navigate(redirect)
+    } catch (error) {
+      toast.error(error?.data?.message || error?.error || 'Something went wrong!')
+    }
   }
   return (
     <FromContainer>
@@ -67,9 +73,16 @@ const LoginScreen = () => {
             autoComplete='current-password'
           />
           <FormControlLabel control={<Checkbox value='remember' color='primary' />} label='Remember me' />
-          <Button type='submit' fullWidth variant='contained' sx={{ mt: 3, mb: 2 }}>
+          <Button type='submit' fullWidth variant='contained' sx={{ mt: 3, mb: 3 }} disabled={isLoading}>
             Sign In
           </Button>
+
+          {isLoading && (
+            <Typography component='h1' variant='h5'>
+              Loading...
+            </Typography>
+          )}
+
           <Grid container>
             <Grid item xs>
               <CustomLink to='/forgotpassword' variant='body2'>
@@ -77,7 +90,7 @@ const LoginScreen = () => {
               </CustomLink>
             </Grid>
             <Grid item>
-              <CustomLink to='/register' variant='body2'>
+              <CustomLink to={redirect ? `/register?redirect=${redirect}` : '/register'} variant='body2'>
                 {"Don't have an account? Sign Up"}
               </CustomLink>
             </Grid>
