@@ -5,9 +5,19 @@ import { Avatar, Box, Button, Checkbox, FormControlLabel, Grid, TextField, Typog
 import FromContainer from '../components/FromContainer'
 import CustomLink from '../components/Link'
 
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { useLoginMutation } from '../slices/usersApiSlice'
+
 const LoginScreen = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const [login, { isLoading }] = useLoginMutation()
+  const { userInfo } = useSelector((state) => state.auth)
 
   const handleSubmit = (event) => {
     event.preventDefault()
