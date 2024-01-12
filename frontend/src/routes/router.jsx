@@ -8,6 +8,7 @@ import LoginScreen from '../screens/LoginScreen'
 import ProductScreen from '../screens/ProductScreen'
 import RegisterScreen from '../screens/RegisterScreen'
 import ShippingScreen from '../screens/ShippingScreen'
+import PrivateRoutes from './PrivateRoutes'
 
 const router = createBrowserRouter([
   {
@@ -18,12 +19,14 @@ const router = createBrowserRouter([
       { index: true, element: <HomeScreen /> },
       { path: 'product/:id', element: <ProductScreen /> },
       { path: 'cart', element: <CartScreen /> },
-      /* Auth in  */
       { path: 'login', element: <LoginScreen /> },
       { path: 'register', element: <RegisterScreen /> },
       { path: 'forgotpassword', element: <ForgotPasswordScreen /> },
-      { path: 'shipping', element: <ShippingScreen /> },
     ],
+  },
+  {
+    element: <PrivateRoutes />,
+    children: [{ path: 'shipping', element: <ShippingScreen /> }],
   },
 ])
 
