@@ -10,6 +10,11 @@ const ShippingScreen = () => {
   const [postalCode, setPostalCode] = useState('')
   const [country, setCountry] = useState('')
 
+  const submitHandler = (e) => {
+    e.preventDefault()
+    console.log('submit')
+  }
+
   return (
     <FromContainer>
       <Box
@@ -22,17 +27,20 @@ const ShippingScreen = () => {
         <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
           <LocalShippingIcon />
         </Avatar>
-        <Typography component='h1' variant='h5'>
+        <Typography component='h1' variant='h4'>
           Shipping address
         </Typography>
-        <Box component='form' noValidate sx={{ mt: 1 }}>
+        <Box
+          component='form'
+          onSubmit={submitHandler}
+          noValidate
+          sx={{ mt: 1 }}>
           <TextField
             margin='normal'
             required
             fullWidth
-            id='address'
             label='Address'
-            name='address'
+            type='text'
             value={address}
             onChange={(e) => setAddress(e.target.value)}
             autoComplete='address'
@@ -42,21 +50,18 @@ const ShippingScreen = () => {
             margin='normal'
             required
             fullWidth
-            name='city'
             value={city}
             onChange={(e) => setCity(e.target.value)}
             label='City'
-            type='city'
-            id='city'
+            type='text'
             autoComplete='current-city'
           />
           <TextField
             margin='normal'
             required
             fullWidth
-            id='postalCode'
             label='Postal Code'
-            name='address'
+            type='number'
             value={postalCode}
             onChange={(e) => setPostalCode(e.target.value)}
             autoComplete='address'
@@ -70,7 +75,7 @@ const ShippingScreen = () => {
             value={country}
             onChange={(e) => setCountry(e.target.value)}
             label='country'
-            type='country'
+            type='text'
             id='country'
             autoComplete='current-country'
           />
