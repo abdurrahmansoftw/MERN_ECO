@@ -112,13 +112,17 @@ const CartScreen = () => {
             <List sx={{ display: 'flex', justifyContent: 'space-between' }}>
               <ListItem disablePadding>
                 <ListItemButton>
+                  <ListItemText>Price</ListItemText>
+                </ListItemButton>
+              </ListItem>
+              <ListItem disablePadding>
+                <ListItemButton>
                   <ListItemText>
                     ${cartItems.reduce((acc, item) => acc + item.price * item.qty, 0).toFixed(2)}
                   </ListItemText>
                 </ListItemButton>
               </ListItem>
             </List>
-            <Divider />
 
             <Divider />
 
