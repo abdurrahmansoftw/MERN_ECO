@@ -1,15 +1,18 @@
-import { Box, Button, Radio, Typography } from '@mui/material'
+import {
+  Box,
+  Button,
+  FormControlLabel,
+  Radio,
+  RadioGroup,
+  Typography,
+} from '@mui/material'
 import React, { useState } from 'react'
 import CheckoutStep from '../components/CheckoutStep'
 import FromContainer from '../components/FromContainer'
 
 const PaymentScreen = () => {
   const [paymentMethod, setPaymentMethod] = useState('PayPal')
-
-  const submitHandler = (e) => {
-    e.preventDefault()
-    console.log('submit')
-  }
+  const [stripe, setStripe] = useState('')
 
   return (
     <FromContainer>
@@ -26,7 +29,25 @@ const PaymentScreen = () => {
 
         <CheckoutStep stepOne stepTwo stepThree />
 
-        <Radio>Metyhod</Radio>
+        <RadioGroup name='use-radio-group' defaultValue='first'>
+          <Box sx={{ display: 'flex', flexDirection: 'column', my: 5 }}>
+            <FormControlLabel
+              id='PayPal'
+              value='PayPal'
+              checked={paymentMethod === 'PayPal'}
+              onClick={(e) => setPaymentMethod(e.target.value)}
+              control={<Radio />}
+              label=' PayPal or Credit Card'
+            />
+            <FormControlLabel
+              id='stripe'
+              value={stripe}
+              onClick={(e) => setStripe(e.target.value)}
+              control={<Radio />}
+              label='Stripe'
+            />
+          </Box>
+        </RadioGroup>
 
         <Button
           type='submit'
