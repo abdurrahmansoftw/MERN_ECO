@@ -6,13 +6,27 @@ import {
   RadioGroup,
   Typography,
 } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import CheckoutStep from '../components/CheckoutStep'
 import FromContainer from '../components/FromContainer'
 
 const PaymentScreen = () => {
   const [paymentMethod, setPaymentMethod] = useState('PayPal')
   const [stripe, setStripe] = useState('')
+
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const cart = useSelector((state) => state.cart)
+  const { shippingAddress } = cart
+
+  useEffect(() => {
+    if (!shippingAddress) {
+      navigate('/shipping')
+    }
+  }, [shippingAddress, navigate])
 
   return (
     <FromContainer>
