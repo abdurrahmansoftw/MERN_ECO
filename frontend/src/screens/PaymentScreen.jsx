@@ -1,4 +1,4 @@
-import { Box, Button, Checkbox, Typography } from '@mui/material'
+import { Box, Button, Radio, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import CheckoutStep from '../components/CheckoutStep'
 import FromContainer from '../components/FromContainer'
@@ -26,7 +26,8 @@ const PaymentScreen = () => {
 
         <CheckoutStep stepOne stepTwo stepThree />
 
-        <Checkbox defaultChecked color='secondary' variant='radio' />
+        <Radio>Metyhod</Radio>
+
         <Button
           type='submit'
           fullWidth
