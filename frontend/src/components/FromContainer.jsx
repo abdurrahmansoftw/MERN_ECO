@@ -3,7 +3,7 @@ import React from 'react'
 
 const FromContainer = ({ children }) => {
   return (
-    <Container component='main' maxWidth='xs'>
+    <Container component='main' maxWidth='sm'>
       <CssBaseline />
       {children}
     </Container>

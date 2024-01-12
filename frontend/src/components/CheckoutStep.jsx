@@ -7,7 +7,7 @@ import {
   Stepper,
 } from '@mui/material'
 import React from 'react'
-import { Link } from 'react-router-dom'
+import CustomLink from './CustomLink'
 
 const CheckoutStep = ({ stepOne, stepTwo, stepThree, stepFour }) => {
   return (
@@ -15,8 +15,10 @@ const CheckoutStep = ({ stepOne, stepTwo, stepThree, stepFour }) => {
       <Stepper>
         {stepOne ? (
           <Step>
-            <StepButton component={Link} to='/login'>
-              <Button>Sign In</Button>
+            <StepButton>
+              <Button component={CustomLink} to='/login'>
+                Sign In
+              </Button>
             </StepButton>
           </Step>
         ) : (
@@ -27,11 +29,11 @@ const CheckoutStep = ({ stepOne, stepTwo, stepThree, stepFour }) => {
           </Step>
         )}
       </Stepper>
-      <Stepper activeStep={2}>
+      <Stepper>
         {stepTwo ? (
           <Step>
             <StepLabel>
-              <Button component={Link} to='/shipping'>
+              <Button component={CustomLink} to='/shipping'>
                 Shipping
               </Button>
             </StepLabel>
@@ -44,11 +46,11 @@ const CheckoutStep = ({ stepOne, stepTwo, stepThree, stepFour }) => {
           </Step>
         )}
       </Stepper>
-      <Stepper activeStep={4}>
+      <Stepper>
         {stepThree ? (
           <Step>
             <StepLabel>
-              <Button component={Link} to='/login'>
+              <Button component={CustomLink} to='/login'>
                 Sign In
               </Button>
             </StepLabel>
@@ -61,11 +63,11 @@ const CheckoutStep = ({ stepOne, stepTwo, stepThree, stepFour }) => {
           </Step>
         )}
       </Stepper>
-      <Stepper activeStep={3}>
+      <Stepper>
         {stepFour ? (
           <Step>
             <StepLabel>
-              <Button component={Link} to='/placeOrder'>
+              <Button component={CustomLink} to='/placeOrder'>
                 Place Order
               </Button>
             </StepLabel>
