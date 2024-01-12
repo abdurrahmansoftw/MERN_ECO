@@ -24,6 +24,7 @@ const router = createBrowserRouter([
       { path: 'forgotpassword', element: <ForgotPasswordScreen /> },
     ],
   },
+  /* Private routes */
   {
     element: <PrivateRoutes />,
     children: [{ path: 'shipping', element: <ShippingScreen /> }],
