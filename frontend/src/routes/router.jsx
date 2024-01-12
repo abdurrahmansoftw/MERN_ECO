@@ -5,6 +5,7 @@ import CartScreen from '../screens/CartScreen'
 import ForgotPasswordScreen from '../screens/ForgotPasswordScreen'
 import HomeScreen from '../screens/HomeScreen'
 import LoginScreen from '../screens/LoginScreen'
+import PaymentScreen from '../screens/PaymentScreen'
 import ProductScreen from '../screens/ProductScreen'
 import RegisterScreen from '../screens/RegisterScreen'
 import ShippingScreen from '../screens/ShippingScreen'
@@ -27,7 +28,10 @@ const router = createBrowserRouter([
   /* Private routes */
   {
     element: <PrivateRoutes />,
-    children: [{ path: 'shipping', element: <ShippingScreen /> }],
+    children: [
+      { path: 'shipping', element: <ShippingScreen /> },
+      { path: 'payment', element: <PaymentScreen /> },
+    ],
   },
 ])
 
