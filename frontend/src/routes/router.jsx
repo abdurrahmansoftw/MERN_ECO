@@ -18,11 +18,10 @@ const router = createBrowserRouter([
       { index: true, element: <HomeScreen /> },
       { path: 'product/:id', element: <ProductScreen /> },
       { path: 'cart', element: <CartScreen /> },
-      /* Auth   */
+      /* Auth in  */
       { path: 'login', element: <LoginScreen /> },
       { path: 'register', element: <RegisterScreen /> },
       { path: 'forgotpassword', element: <ForgotPasswordScreen /> },
-      /* Shipping */
       { path: 'shipping', element: <ShippingScreen /> },
     ],
   },

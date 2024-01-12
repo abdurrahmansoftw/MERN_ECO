@@ -41,16 +41,25 @@ const CartScreen = () => {
 
   return (
     <Container sx={{ py: 2 }}>
-      <Typography component='h1' variant='h3' align='center' color='text.primary' gutterBottom>
+      <Typography
+        component='h1'
+        variant='h3'
+        align='center'
+        color='text.primary'
+        gutterBottom>
         Shopping Cart
       </Typography>
       <Grid container spacing={4} sx={{ my: 5 }}>
-        <Grid xs={12} sm={6} md={8}>
+        <Grid item xs={12} md={9}>
           <Paper elevation={2} sx={{ p: 2 }}>
             {cartItems.length === 0 ? (
               <Box>
                 Your cart is empty.
-                <Button variant='outlined' component={Link} to='/' onClick={() => navigate(-1)}>
+                <Button
+                  variant='outlined'
+                  component={Link}
+                  to='/'
+                  onClick={() => navigate(-1)}>
                   Go Back
                 </Button>
               </Box>
@@ -60,24 +69,32 @@ const CartScreen = () => {
                   You have: {cartItems.length} items in your cart
                 </Typography>
 
-                {cartItems.map((item) => (
-                  <Grid container key={item.product} spacing={3} sx={{ my: 1 }}>
+                {cartItems.map((item, index) => (
+                  <Grid container key={item.name} spacing={3} sx={{ my: 1 }}>
                     <Grid item xs={12} md={2}>
-                      <img src={item.image} alt={item.name} style={{ width: '100%' }} />
+                      <img
+                        src={item.image}
+                        alt={item.name}
+                        style={{ width: '100%' }}
+                      />
                     </Grid>
                     <Grid item xs={12} md={4}>
                       <Typography variant='h6' gutterBottom>
                         {item.name}
                       </Typography>
                     </Grid>
-                    <Grid item xs={12} md={3}>
+                    <Grid item xs={12} md={2}>
                       <Typography variant='p' gutterBottom>
-                        {item.qty} x ${item.price} = ${item.qty * item.price}
+                        ${item.qty * item.price}
                       </Typography>
                     </Grid>
                     <Grid item xs={12} md={2}>
                       <FormControl fullWidth size='small' variant='standard'>
-                        <Select value={item.qty} onChange={(e) => addToCartHandler(item, Number(e.target.value))}>
+                        <Select
+                          value={item.qty}
+                          onChange={(e) =>
+                            addToCartHandler(item, Number(e.target.value))
+                          }>
                           {[...Array(item.countInStock).keys()].map((x) => (
                             <MenuItem key={x + 1} value={x + 1}>
                               {x + 1}
@@ -102,11 +119,12 @@ const CartScreen = () => {
           </Paper>
         </Grid>
 
-        <Grid xs={12} sm={6} md={4}>
+        <Grid item xs={12} md={3}>
           <Paper aria-label='main mailbox folders' elevation={0} sx={{ p: 2 }}>
             <Box>
               <Typography variant='h6' gutterBottom>
-                Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)}) items
+                Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)})
+                items
               </Typography>
             </Box>
             <List sx={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -118,7 +136,10 @@ const CartScreen = () => {
               <ListItem disablePadding>
                 <ListItemButton>
                   <ListItemText>
-                    ${cartItems.reduce((acc, item) => acc + item.price * item.qty, 0).toFixed(2)}
+                    $
+                    {cartItems
+                      .reduce((acc, item) => acc + item.price * item.qty, 0)
+                      .toFixed(2)}
                   </ListItemText>
                 </ListItemButton>
               </ListItem>
