@@ -12,7 +12,7 @@ import CustomLink from './CustomLink'
 const CheckoutStep = ({ stepOne, stepTwo, stepThree, stepFour }) => {
   return (
     <Box sx={{ display: 'flex', width: '100%' }}>
-      <Stepper>
+      <Stepper activeStep={stepOne}>
         {stepOne ? (
           <Step>
             <StepButton>
@@ -29,7 +29,7 @@ const CheckoutStep = ({ stepOne, stepTwo, stepThree, stepFour }) => {
           </Step>
         )}
       </Stepper>
-      <Stepper>
+      <Stepper activeStep={stepTwo}>
         {stepTwo ? (
           <Step>
             <StepLabel>
@@ -46,24 +46,24 @@ const CheckoutStep = ({ stepOne, stepTwo, stepThree, stepFour }) => {
           </Step>
         )}
       </Stepper>
-      <Stepper>
+      <Stepper activeStep={stepThree}>
         {stepThree ? (
           <Step>
             <StepLabel>
-              <Button component={CustomLink} to='/login'>
-                Sign In
+              <Button component={CustomLink} to='/payment'>
+                payment
               </Button>
             </StepLabel>
           </Step>
         ) : (
           <Step>
             <StepLabel>
-              <Button disabled>Sign In</Button>
+              <Button disabled>payment</Button>
             </StepLabel>
           </Step>
         )}
       </Stepper>
-      <Stepper>
+      <Stepper activeStep={stepFour}>
         {stepFour ? (
           <Step>
             <StepLabel>
