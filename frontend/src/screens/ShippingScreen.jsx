@@ -77,7 +77,6 @@ const ShippingScreen = () => {
             value={postalCode}
             onChange={(e) => setPostalCode(e.target.value)}
             autoComplete='number'
-            autoFocus
           />
           <TextField
             margin='normal'
