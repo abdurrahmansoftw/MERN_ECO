@@ -4,6 +4,7 @@ import LocalShippingIcon from '@mui/icons-material/LocalShipping'
 import { Avatar, Box, Button, TextField, Typography } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import CheckoutStep from '../components/CheckoutStep'
 import FromContainer from '../components/FromContainer'
 import { saveShippingAddress } from '../slices/cartSlice'
 
@@ -42,6 +43,9 @@ const ShippingScreen = () => {
         <Typography component='h1' variant='h4'>
           Shipping address
         </Typography>
+
+        <CheckoutStep stepOne stepTwo />
+
         <Box
           component='form'
           onSubmit={submitHandler}
