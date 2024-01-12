@@ -5,7 +5,11 @@ import CustomLink from './CustomLink'
 const CheckoutStep = ({ stepOne, stepTwo, stepThree, stepFour }) => {
   return (
     <Box>
-      <CustomLink to='/cart'>Cart</CustomLink>
+      {stepOne ? (
+        <CustomLink to='/login'>Sign In</CustomLink>
+      ) : (
+        <CustomLink disabled>Sign In</CustomLink>
+      )}
     </Box>
   )
 }
