@@ -1,9 +1,18 @@
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import React, { useEffect, useState } from 'react'
 
-import { Avatar, Box, Button, Checkbox, FormControlLabel, Grid, TextField, Typography } from '@mui/material'
+import {
+  Avatar,
+  Box,
+  Button,
+  Checkbox,
+  FormControlLabel,
+  Grid,
+  TextField,
+  Typography,
+} from '@mui/material'
+import CustomLink from '../components/CustomLink'
 import FromContainer from '../components/FromContainer'
-import CustomLink from '../components/Link'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom'
@@ -39,12 +48,20 @@ const LoginScreen = () => {
       dispatch(setCredentials({ ...response }))
       navigate(redirect)
     } catch (error) {
-      toast.error(error?.data?.message || error?.error || 'Something went wrong!')
+      toast.error(
+        error?.data?.message || error?.error || 'Something went wrong!'
+      )
     }
   }
   return (
     <FromContainer>
-      <Box sx={{ marginTop: 8, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <Box
+        sx={{
+          marginTop: 8,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}>
         <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
           <LockOutlinedIcon />
         </Avatar>
@@ -76,8 +93,16 @@ const LoginScreen = () => {
             id='password'
             autoComplete='current-password'
           />
-          <FormControlLabel control={<Checkbox value='remember' color='primary' />} label='Remember me' />
-          <Button type='submit' fullWidth variant='contained' sx={{ mt: 3, mb: 3 }} disabled={isLoading}>
+          <FormControlLabel
+            control={<Checkbox value='remember' color='primary' />}
+            label='Remember me'
+          />
+          <Button
+            type='submit'
+            fullWidth
+            variant='contained'
+            sx={{ mt: 3, mb: 3 }}
+            disabled={isLoading}>
             Sign In
           </Button>
 
@@ -94,7 +119,9 @@ const LoginScreen = () => {
               </CustomLink>
             </Grid>
             <Grid item>
-              <CustomLink to={redirect ? `/register?redirect=${redirect}` : '/register'} variant='body2'>
+              <CustomLink
+                to={redirect ? `/register?redirect=${redirect}` : '/register'}
+                variant='body2'>
                 {"Don't have an account? Sign Up"}
               </CustomLink>
             </Grid>

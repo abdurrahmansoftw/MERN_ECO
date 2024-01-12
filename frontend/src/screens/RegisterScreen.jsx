@@ -1,9 +1,18 @@
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import React, { useEffect, useState } from 'react'
 
-import { Avatar, Box, Button, Checkbox, FormControlLabel, Grid, TextField, Typography } from '@mui/material'
+import {
+  Avatar,
+  Box,
+  Button,
+  Checkbox,
+  FormControlLabel,
+  Grid,
+  TextField,
+  Typography,
+} from '@mui/material'
+import CustomLink from '../components/CustomLink'
 import FromContainer from '../components/FromContainer'
-import CustomLink from '../components/Link'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom'
@@ -45,13 +54,21 @@ const RegisterScreen = () => {
         dispatch(setCredentials({ ...response }))
         navigate(redirect)
       } catch (error) {
-        toast.error(error?.data?.message || error?.error || 'Something went wrong!')
+        toast.error(
+          error?.data?.message || error?.error || 'Something went wrong!'
+        )
       }
     }
   }
   return (
     <FromContainer>
-      <Box sx={{ marginTop: 8, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <Box
+        sx={{
+          marginTop: 8,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}>
         <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
           <LockOutlinedIcon />
         </Avatar>
@@ -97,8 +114,16 @@ const RegisterScreen = () => {
             type='password'
             autoComplete='current-password'
           />
-          <FormControlLabel control={<Checkbox value='remember' color='primary' />} label='Remember me' />
-          <Button type='submit' fullWidth variant='contained' sx={{ mt: 3, mb: 2 }}>
+          <FormControlLabel
+            control={<Checkbox value='remember' color='primary' />}
+            label='Remember me'
+          />
+          <Button
+            type='submit'
+            disabled={isLoading}
+            fullWidth
+            variant='contained'
+            sx={{ mt: 3, mb: 2 }}>
             Sign In
           </Button>
           <Grid container>
@@ -108,7 +133,9 @@ const RegisterScreen = () => {
               </CustomLink>
             </Grid>
             <Grid item>
-              <CustomLink to={redirect ? `/login?redirect=${redirect}` : '/login'} variant='body2'>
+              <CustomLink
+                to={redirect ? `/login?redirect=${redirect}` : '/login'}
+                variant='body2'>
                 {'Already have an account? Sign In'}
               </CustomLink>
             </Grid>
