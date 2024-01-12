@@ -2,7 +2,10 @@ import React, { useState } from 'react'
 
 import LocalShippingIcon from '@mui/icons-material/LocalShipping'
 import { Avatar, Box, Button, TextField, Typography } from '@mui/material'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import FromContainer from '../components/FromContainer'
+import { saveShippingAddress } from '../slices/cartSlice'
 
 const ShippingScreen = () => {
   const [address, setAddress] = useState('')
@@ -10,9 +13,15 @@ const ShippingScreen = () => {
   const [postalCode, setPostalCode] = useState('')
   const [country, setCountry] = useState('')
 
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const cart = useSelector((state) => state.cart)
+  const { shippingAddress } = cart
+
   const submitHandler = (e) => {
     e.preventDefault()
-    console.log('submit')
+    dispatch(saveShippingAddress({ address, city, postalCode, country }))
   }
 
   return (
