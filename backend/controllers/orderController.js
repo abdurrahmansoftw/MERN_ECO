@@ -20,15 +20,11 @@ const addOrderItems = asyncHandler(async (req, res) => {
     return
   } else {
     const order = new Order({
-      orderItems: orderItems.map((item) => {
-        return {
-          name: item.name,
-          qty: item.qty,
-          image: item.image,
-          price: item.price,
-          product: item.product,
-        }
-      }),
+      orderItems: orderItems.map((x) => ({
+        ...x,
+        product: x._id,
+        _id: undefined,
+      })),
       user: req.user._id,
       shippingAddress,
       paymentMethod,
