@@ -63,7 +63,10 @@ const getMyOrders = asyncHandler(async (req, res) => {
 // @route   GET /api/orders/:id
 // @access  Private
 const getOrderById = asyncHandler(async (req, res) => {
-  res.send('get Order by ID')
+  const order = await Order.findById(req.params.id).populate(
+    'user',
+    'name email'
+  )
 })
 
 // @docs    Update order to paid
