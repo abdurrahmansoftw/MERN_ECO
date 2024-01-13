@@ -34,6 +34,10 @@ const cartSlice = createSlice({
       state.paymentMethod = action.payload
       return updateCart(state)
     },
+    clearCartItems: (state) => {
+      state.cartItems = []
+      return updateCart(state)
+    },
   },
 })
 
