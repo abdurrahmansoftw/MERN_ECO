@@ -10,7 +10,7 @@ const addOrderItems = asyncHandler(async (req, res) => {
 // @docs    Get Logged in user orders
 // @route   GET /api/orders/myorders
 // @access  Private
-const getMyOders = asyncHandler(async (req, res) => {
+const getMyOrders = asyncHandler(async (req, res) => {
   res.send('get My Order Items')
 })
 
@@ -44,7 +44,7 @@ const getOrders = asyncHandler(async (req, res) => {
 
 export {
   addOrderItems,
-  getMyOders,
+  getMyOrders,
   getOrderById,
   getOrders,
   updateOrderToDelivered,
