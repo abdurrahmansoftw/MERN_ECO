@@ -1,6 +1,8 @@
 import {
+  Alert,
   Avatar,
   Box,
+  Button,
   Divider,
   Grid,
   ListItem,
@@ -12,10 +14,13 @@ import {
 } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import React, { useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import CheckoutStep from '../components/CheckoutStep'
 import CustomLink from '../components/CustomLink'
+import { clearCartItems } from '../slices/cartSlice'
+import { useAddOrderItemsMutation } from '../slices/ordersApiSlice'
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -26,8 +31,11 @@ const Item = styled(Paper)(({ theme }) => ({
 }))
 
 const PlaceOrderScreen = () => {
+  const dispatch = useDispatch()
   const navigate = useNavigate()
+
   const cart = useSelector((state) => state.cart)
+  const [createOrder, { isLoading, error }] = useAddOrderItemsMutation()
 
   useEffect(() => {
     if (!cart.shippingAddress.address) {
@@ -37,13 +45,32 @@ const PlaceOrderScreen = () => {
     }
   }, [cart.paymentMethod, cart.shippingAddress.address, navigate])
 
+  const placeOrderHandler = async () => {
+    try {
+      const res = await createOrder({
+        orderItems: cart.cartItems,
+        shippingAddress: cart.shippingAddress,
+        paymentMethod: cart.paymentMethod,
+        itemsPrice: cart.itemsPrice,
+        shippingPrice: cart.shippingPrice,
+        taxPrice: cart.taxPrice,
+        totalPrice: cart.totalPrice,
+      }).unwrap()
+      dispatch(clearCartItems())
+      navigate(`/order/${res._id}`)
+      console.log(res);
+    } catch (error) {
+      toast.error(error.message)
+    }
+  }
+
   return (
     <Box sx={{ my: 5 }}>
       <CheckoutStep stepOne stepTwo stepThree stepFour />
 
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={2}>
-          <Grid item xs={12} sm={8}>
+          <Grid item xs={12} md={8}>
             <Item>
               <ListItem component='div' disablePadding>
                 <ListItemButton>
@@ -90,7 +117,7 @@ const PlaceOrderScreen = () => {
                       {cart.cartItems.map((item, index) => (
                         <Grid container spacing={2} key={index} sx={{ m: 1 }}>
                           <Grid item xs={2}>
-                            <ListItem component='div' disablePadding>
+                            <ListItem  disablePadding>
                               <ListItemAvatar>
                                 <Avatar
                                   alt={item.name}
@@ -130,7 +157,7 @@ const PlaceOrderScreen = () => {
               <Divider />
             </Item>
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={12}  md={4}>
             <Item>
               <ListItem component='div' disablePadding>
                 <ListItemText>
@@ -140,10 +167,7 @@ const PlaceOrderScreen = () => {
               <Divider />
               <ListItem component='div' disablePadding>
                 <ListItemText>
-                  <Typography variant='body1'>
-                    Items:{' '}
-                    {cart.cartItems.reduce((acc, item) => acc + item.qty, 0)}
-                  </Typography>
+                  <Typography variant='body1'>Items:</Typography>
                 </ListItemText>
                 <ListItemText>
                   <Typography variant='body1'>
@@ -153,6 +177,57 @@ const PlaceOrderScreen = () => {
                       .toFixed(2)}
                   </Typography>
                 </ListItemText>
+              </ListItem>
+              <Divider />
+              <ListItem component='div' disablePadding>
+                <ListItemText>
+                  <Typography variant='body1'>Shipping</Typography>
+                </ListItemText>
+                <ListItemText>
+                  <Typography variant='body1'>${cart.shippingPrice}</Typography>
+                </ListItemText>
+              </ListItem>
+              <Divider />
+              <ListItem component='div' disablePadding>
+                <ListItemText>
+                  <Typography variant='body1'>Tax</Typography>
+                </ListItemText>
+                <ListItemText>
+                  <Typography variant='body1'>$ {cart.taxPrice}</Typography>
+                </ListItemText>
+              </ListItem>
+              <Divider />
+              <ListItem component='div' disablePadding>
+                <ListItemText>
+                  <Typography variant='body1'>Total</Typography>
+                </ListItemText>
+                <ListItemText>
+                  <Typography variant='body1'>$ {cart.totalPrice}</Typography>
+                </ListItemText>
+              </ListItem>
+              <Divider />
+
+              {error && (
+                <Alert variant='outlined' color='warning'>
+                  {error}
+                </Alert>
+              )}
+
+              <ListItem component='div' disablePadding>
+                <ListItemButton>
+                  <ListItemText>
+                    <Button
+                      elevation={0}
+                      variant='contained'
+                      color='primary'
+                      onClick={placeOrderHandler}
+                      disabled={cart.length === 0}
+                      sx={{ display: 'block', width: '100%' }}>
+                      Place Order
+                    </Button>
+                    {isLoading && <p>loading...</p>}
+                  </ListItemText>
+                </ListItemButton>
               </ListItem>
             </Item>
           </Grid>
