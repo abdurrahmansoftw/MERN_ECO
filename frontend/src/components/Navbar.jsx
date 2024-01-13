@@ -1,7 +1,17 @@
 /* eslint-disable react/jsx-no-duplicate-props */
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
-import { AppBar, Badge, Box, Button, Divider, Menu, MenuItem, Toolbar, Typography } from '@mui/material'
+import {
+  AppBar,
+  Badge,
+  Box,
+  Button,
+  Divider,
+  Menu,
+  MenuItem,
+  Toolbar,
+  Typography,
+} from '@mui/material'
 import Fade from '@mui/material/Fade'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -41,7 +51,11 @@ const Navbar = () => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position='static' elevation={1}>
         <Toolbar>
-          <Typography variant='h6' component={Link} hrf={'/'} sx={{ flexGrow: 1 }}>
+          <Typography
+            variant='h6'
+            component={Link}
+            hrf={'/'}
+            sx={{ flexGrow: 1 }}>
             Kingsman
           </Typography>
           <Button color='inherit' component={Link} to='/cart'>
@@ -51,7 +65,10 @@ const Navbar = () => {
               </Box>
             ) : (
               <Box>
-                <Badge sx={{ mr: 1 }} badgeContent={cartItems.reduce((a, c) => a + c.qty, 0)} color='success'>
+                <Badge
+                  sx={{ mr: 1 }}
+                  badgeContent={cartItems.reduce((a, c) => a + c.qty, 0)}
+                  color='success'>
                   <ShoppingCartIcon fontSize='small' />
                 </Badge>
                 Cart
@@ -68,7 +85,8 @@ const Navbar = () => {
                 aria-haspopup='true'
                 aria-expanded={open ? 'true' : undefined}
                 onClick={handleClick}>
-                <AccountCircleIcon fontSize='small' /> Dashboard
+                <AccountCircleIcon fontSize='small' />{' '}
+                {userInfo.isAdmin === true ? 'Admin' : 'Account'}
               </Button>
               <Menu
                 id='fade-menu'

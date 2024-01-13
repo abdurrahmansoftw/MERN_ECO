@@ -3,14 +3,16 @@ import cookieParser from 'cookie-parser'
 import dotenv from 'dotenv'
 import express from 'express'
 import connectDB from './database/database.js'
+import { errorHandler, notFound } from './middleware/errorMiddleware.js'
 import orderRoutes from './routes/orderRoutes.js'
 import productRoutes from './routes/productRoutes.js'
 import userRoutes from './routes/userRoutes.js'
-
 dotenv.config()
-connectDB()
 
 const port = process.env.PORT || 5000
+
+connectDB()
+
 const app = express()
 
 // body parser middleware
@@ -29,6 +31,10 @@ app.get('/', (req, res) => {
 app.use('/api/users', userRoutes)
 app.use('/api/products', productRoutes)
 app.use('/api/orders', orderRoutes)
+
+// error middleware
+app.use(notFound)
+app.use(errorHandler)
 
 app.listen(port, () => {
   console.log(
