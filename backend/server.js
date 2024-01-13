@@ -3,6 +3,7 @@ import cookieParser from 'cookie-parser'
 import dotenv from 'dotenv'
 import express from 'express'
 import connectDB from './database/database.js'
+import orderRoutes from './routes/orderRoutes.js'
 import productRoutes from './routes/productRoutes.js'
 import userRoutes from './routes/userRoutes.js'
 
@@ -25,9 +26,14 @@ app.get('/', (req, res) => {
 })
 
 // routes middleware for products and users
-app.use('/api/products', productRoutes)
 app.use('/api/users', userRoutes)
+app.use('/api/products', productRoutes)
+app.use('/api/orders', orderRoutes)
 
 app.listen(port, () => {
-  console.log(colors.rainbow(`Server is running on port http://localhost:${process.env.PORT}`))
+  console.log(
+    colors.rainbow(
+      `Server is running on port http://localhost:${process.env.PORT}`
+    )
+  )
 })
