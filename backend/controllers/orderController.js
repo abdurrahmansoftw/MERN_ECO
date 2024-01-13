@@ -67,6 +67,10 @@ const getOrderById = asyncHandler(async (req, res) => {
     'user',
     'name email'
   )
+  if (!order) {
+    res.status(404)
+    throw new Error('Order not found')
+  }
 })
 
 // @docs    Update order to paid
