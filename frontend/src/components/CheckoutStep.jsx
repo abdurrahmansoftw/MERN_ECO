@@ -11,7 +11,15 @@ import CustomLink from './CustomLink'
 
 const CheckoutStep = ({ stepOne, stepTwo, stepThree, stepFour }) => {
   return (
-    <Box sx={{ display: 'flex', width: '100%' }}>
+    <Box
+      sx={{
+        display: 'flex',
+        width: '100%',
+        my: 3,
+        direction: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}>
       <Stepper activeStep={stepOne}>
         {stepOne ? (
           <Step>
