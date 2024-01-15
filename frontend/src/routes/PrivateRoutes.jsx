@@ -6,18 +6,18 @@ import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
 
 const PrivateRoutes = () => {
-  const { userInfo } = useSelector((state) => state.auth)
-  return userInfo ? (
-    <Box>
-      <Navbar />
-      <Container maxWidth='xl'>
-        <Outlet />
-      </Container>
-      <Footer />
-    </Box>
-  ) : (
-    <Navigate to='/login' replace />
-  )
+	const { userInfo } = useSelector((state) => state.auth)
+	return userInfo ? (
+		<Box>
+			<Navbar />
+			<Container maxWidth='xl'>
+				<Outlet />
+			</Container>
+			<Footer />
+		</Box>
+	) : (
+		<Navigate to='/login' replace />
+	)
 }
 
 export default PrivateRoutes
