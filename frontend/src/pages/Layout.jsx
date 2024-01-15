@@ -7,17 +7,17 @@ import Navbar from '../components/Navbar'
 import { useScrollToTop } from '../hooks/use-scroll-to-top'
 
 const Layout = () => {
-  useScrollToTop()
-  return (
-    <Box>
-      <Navbar />
-      <Container maxWidth='xl'>
-        <Outlet />
-      </Container>
-      <ToastContainer />
-      <Footer />
-    </Box>
-  )
+	useScrollToTop()
+	return (
+		<Box>
+			<Navbar />
+			<Container maxWidth='xl'>
+				<Outlet />
+			</Container>
+			<ToastContainer />
+			<Footer />
+		</Box>
+	)
 }
 
 export default Layout
