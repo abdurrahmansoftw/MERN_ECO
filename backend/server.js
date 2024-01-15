@@ -24,7 +24,7 @@ app.use(cookieParser())
 
 // routes middleware for home page
 app.get('/', (req, res) => {
-  res.send('API is Working!')
+	res.send('API is Working!')
 })
 
 // routes middleware for products and users
@@ -37,9 +37,9 @@ app.use(notFound)
 app.use(errorHandler)
 
 app.listen(port, () => {
-  console.log(
-    colors.rainbow(
-      `Server is running on port http://localhost:${process.env.PORT}`
-    )
-  )
+	console.log(
+		colors.rainbow(
+			`Server is running on port http://localhost:${process.env.PORT}`
+		)
+	)
 })
