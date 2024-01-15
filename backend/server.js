@@ -10,9 +10,7 @@ import userRoutes from './routes/userRoutes.js'
 dotenv.config()
 
 const port = process.env.PORT || 5000
-
 connectDB()
-
 const app = express()
 
 // body parser middleware
