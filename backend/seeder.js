@@ -7,7 +7,6 @@ import Product from './models/productModel.js'
 import User from './models/userModel.js'
 
 dotenv.config()
-
 connectDB()
 
 const importData = async () => {
@@ -17,9 +16,7 @@ const importData = async () => {
 		await User.deleteMany()
 
 		const createdUsers = await User.insertMany(users)
-
 		const adminUser = createdUsers[0]._id
-
 		const sampleProducts = products.map((product) => {
 			return { ...product, user: adminUser }
 		})
