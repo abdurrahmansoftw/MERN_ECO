@@ -5,8 +5,7 @@ import asyncHandler from './asyncHandler.js'
 // User must be authenticated
 const protect = asyncHandler(async (req, res, next) => {
 	let token
-	// Read JWT from the 'jwt' cookie
-	token = req.cookies.jwt
+	token = req.cookies.jwt // Read JWT from the 'jwt' cookie
 
 	if (token) {
 		try {
