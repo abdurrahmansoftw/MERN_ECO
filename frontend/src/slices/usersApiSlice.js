@@ -5,7 +5,6 @@ export const usersApiSlice = apiSlice.injectEndpoints({
 	endpoints: (builder) => ({
 		login: builder.mutation({
 			query: (data) => ({
-				// eslint-disable-next-line no-undef
 				url: `${USERS_URL}/auth`,
 				method: 'POST',
 				body: data,
@@ -13,7 +12,6 @@ export const usersApiSlice = apiSlice.injectEndpoints({
 		}),
 		register: builder.mutation({
 			query: (data) => ({
-				// eslint-disable-next-line no-undef
 				url: `${USERS_URL}`,
 				method: 'POST',
 				body: data,
@@ -21,7 +19,6 @@ export const usersApiSlice = apiSlice.injectEndpoints({
 		}),
 		logout: builder.mutation({
 			query: () => ({
-				// eslint-disable-next-line no-undef
 				url: `${USERS_URL}/logout`,
 				method: 'POST',
 			}),
