@@ -39,7 +39,6 @@ const destroyData = async () => {
 
 		console.log('Data Destroyed!'.red.inverse)
 		process.exit()
-		
 	} catch (error) {
 		console.error(`${error}`.red.inverse)
 		process.exit(1)
