@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react'
 
 const UserListScreen = () => {
-  return <div>UserListScreen</div>;
-};
+	return <div>UserListScreen</div>
+}
 
-export default UserListScreen;
+export default UserListScreen
