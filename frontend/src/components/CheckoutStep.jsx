@@ -21,7 +21,7 @@ const CheckoutStep = ({ stepOne, stepTwo, stepThree, stepFour }) => {
 				alignItems: 'center',
 			}}
 		>
-			<Stepper activeStep={stepOne}>
+			<Stepper activeStep={stepOne ? true : stepOne}>
 				{stepOne ? (
 					<Step>
 						<StepButton>
