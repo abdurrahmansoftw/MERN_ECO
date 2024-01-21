@@ -11,13 +11,15 @@ import {
 	Typography,
 } from '@mui/material'
 import { useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import CheckoutStep from '../components/CheckoutStep'
 import CustomLink from '../components/CustomLink'
+import { clearCartItems } from '../slices/cartSlice'
 import { useCreateOrderMutation } from '../slices/ordersApiSlice'
 
 const PlaceOrderScreen = () => {
+	const dispatch = useDispatch()
 	const navigate = useNavigate()
 	const cart = useSelector((state) => state.cart)
 
@@ -41,7 +43,8 @@ const PlaceOrderScreen = () => {
 				shippingPrice: cart.shippingPrice,
 				taxPrice: cart.taxPrice,
 				totalPrice: cart.totalPrice,
-			})
+			}).unwrap()
+			dispatch(clearCartItems())
 		} catch (error) {}
 	}
 
