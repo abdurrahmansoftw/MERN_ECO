@@ -11,6 +11,7 @@ import {
 } from '@mui/material'
 import React from 'react'
 import { useParams } from 'react-router-dom'
+import CustomLink from '../components/CustomLink'
 import { useGetOrderDetailsQuery } from '../slices/ordersApiSlice'
 
 const OrderScreen = () => {
@@ -79,10 +80,20 @@ const OrderScreen = () => {
 						</ListItem>
 						<Divider />
 						{order.orderItems.map((item) => (
-							<ListItem disablePadding key={item.product}>
+							<ListItem disablePadding key={item._id}>
+								<ListItemButton>
+									<img src={item.image} alt={item.name} className='w-16' />
+								</ListItemButton>
 								<ListItemButton>
 									<ListItemText>
-										{item.name} x {item.qty} = ${item.price * item.qty}
+										<CustomLink to={`/product/${item._id}`}>
+											{item.name}
+										</CustomLink>
+									</ListItemText>
+								</ListItemButton>
+								<ListItemButton>
+									<ListItemText>
+										{item.qty} x ${item.price} = ${item.qty * item.price}
 									</ListItemText>
 								</ListItemButton>
 							</ListItem>
