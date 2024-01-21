@@ -1,5 +1,6 @@
 import {
 	Box,
+	Button,
 	Divider,
 	Grid,
 	List,
@@ -27,12 +28,16 @@ const PlaceOrderScreen = () => {
 		}
 	}, [cart.shippingAddress, navigate, cart.paymentMethod])
 
+	const placeOrderHandler = () => {
+		console.log('order')
+	}
+
 	return (
 		<Box sx={{ flexGrow: 1, my: 3 }}>
 			<CheckoutStep stepOne stepTwo stepThree stepFour />
 			<Grid container spacing={2}>
 				<Grid item xs={12} md={8}>
-					<Typography component='h1' variant='h2'>
+					<Typography component='h1' variant='h4'>
 						Place Order
 					</Typography>
 
@@ -40,7 +45,7 @@ const PlaceOrderScreen = () => {
 						<ListItem disablePadding>
 							<ListItemButton>
 								<ListItemText>
-									<Typography variant='h5' component='h1'>
+									<Typography variant='h6' component='h1'>
 										Shipping Address
 									</Typography>
 								</ListItemText>
@@ -68,7 +73,7 @@ const PlaceOrderScreen = () => {
 						<ListItem disablePadding>
 							<ListItemButton>
 								<ListItemText>
-									<Typography variant='h5' component='h1'>
+									<Typography variant='h6' component='h1'>
 										Payment Method
 									</Typography>
 								</ListItemText>
@@ -86,7 +91,7 @@ const PlaceOrderScreen = () => {
 						<ListItem disablePadding>
 							<ListItemButton>
 								<ListItemText>
-									<Typography variant='h5' component='h1'>
+									<Typography variant='h6' component='h1'>
 										Item Ordered ({cart.cartItems.length})
 									</Typography>
 								</ListItemText>
@@ -115,11 +120,10 @@ const PlaceOrderScreen = () => {
 					</List>
 				</Grid>
 				<Grid item xs={12} md={4}>
-					<Typography component='h1' variant='h4'>
-						Order Summary
-					</Typography>
-
-					<Paper aria-label='main mailbox folders' elevation={5}>
+					<Paper elevation={2}>
+						<Typography component='h1' variant='h4' sx={{ p: 2 }}>
+							Order Summary
+						</Typography>
 						<List sx={{ display: 'flex', justifyContent: 'space-between' }}>
 							<ListItem disablePadding>
 								<ListItemButton>
@@ -185,6 +189,21 @@ const PlaceOrderScreen = () => {
 								</ListItemButton>
 							</ListItem>
 						</List>
+
+						<Divider />
+						<ListItem disablePadding>
+							<ListItemButton>
+								<Button
+									variant='contained'
+									color='primary'
+									fullWidth
+									disabled={cart.cartItems.length === 0}
+									onClick={placeOrderHandler}
+								>
+									Place Order
+								</Button>
+							</ListItemButton>
+						</ListItem>
 					</Paper>
 				</Grid>
 			</Grid>
