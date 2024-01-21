@@ -1,6 +1,5 @@
 import {
 	Box,
-	CardMedia,
 	Divider,
 	Grid,
 	List,
@@ -78,15 +77,13 @@ const PlaceOrderScreen = () => {
 						{cart.cartItems.map((item) => (
 							<ListItem disablePadding key={item.product}>
 								<ListItemButton>
-									<CardMedia image={item.image} title={item.name} />
+									<img src={item.image} alt={item.name} className='w-16' />
 								</ListItemButton>
-								<ListItemButton>
-									<ListItemText
-										components={CustomLink}
-										to={`/products/${item.product}`}
-									>
-										{item.name}
-									</ListItemText>
+								<ListItemButton
+									components={CustomLink}
+									to={`/product/${item.product}`}
+								>
+									<ListItemText>{item.name}</ListItemText>
 								</ListItemButton>
 								<ListItemButton>
 									<ListItemText>
