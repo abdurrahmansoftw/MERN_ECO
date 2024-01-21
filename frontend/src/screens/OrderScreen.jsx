@@ -11,7 +11,7 @@ import {
 	Typography,
 } from '@mui/material'
 import { usePayPalScriptReducer } from '@paypal/react-paypal-js'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import CustomLink from '../components/CustomLink'
@@ -39,6 +39,26 @@ const OrderScreen = () => {
 	} = useGetPaypalClientIdQuery()
 
 	const { userInfo } = useSelector((state) => state.auth)
+
+	useEffect(() => {
+		if (!errorPaypal && !loadingPaypal && !paypal.clientId) {
+			const loadingPaypalScript = async () => {
+				await paypalDispatch({
+					type: 'resetOptions',
+					value: {
+						'client-id': paypal.clientId,
+						currency: 'USD',
+					},
+				})
+				paypalDispatch({ type: 'setLoadingStatus', value: 'pending' })
+			}
+			if (order && !order.isPaid) {
+				if (!window.paypal) {
+					loadingPaypalScript()
+				}
+			}
+		}
+	}, [errorPaypal, loadingPaypal, order, paypal, paypalDispatch])
 
 	if (isLoading) return <div>Loading...</div>
 	if (error) return <div>{error}</div>
