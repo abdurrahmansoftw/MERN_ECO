@@ -6,6 +6,7 @@ import {
 	ListItem,
 	ListItemButton,
 	ListItemText,
+	Paper,
 	Typography,
 } from '@mui/material'
 import { useEffect } from 'react'
@@ -117,6 +118,39 @@ const PlaceOrderScreen = () => {
 					<Typography component='h1' variant='h4'>
 						Order Summary
 					</Typography>
+
+					<Paper aria-label='main mailbox folders' elevation={5}>
+						<List sx={{ display: 'flex', justifyContent: 'space-between' }}>
+							<ListItem disablePadding>
+								<ListItemButton>
+									<ListItemText>
+										Item Ordered ({cart.cartItems.length})
+									</ListItemText>
+								</ListItemButton>
+							</ListItem>
+							<Divider />
+							<ListItem disablePadding>
+								<ListItemButton>
+									<ListItemText>${cart.itemsPrice} </ListItemText>
+								</ListItemButton>
+							</ListItem>
+						</List>
+						<Divider />
+						<List sx={{ display: 'flex', justifyContent: 'space-between' }}>
+							<ListItem disablePadding>
+								<ListItemButton>
+									<ListItemText>Shipping Price</ListItemText>
+								</ListItemButton>
+							</ListItem>
+							<Divider />
+							<ListItem disablePadding>
+								<ListItemButton>
+									<ListItemText>${cart.shippingPrice}</ListItemText>
+								</ListItemButton>
+							</ListItem>
+						</List>
+						<Divider />
+					</Paper>
 				</Grid>
 			</Grid>
 		</Box>
