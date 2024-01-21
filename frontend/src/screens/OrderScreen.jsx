@@ -231,9 +231,7 @@ const OrderScreen = () => {
 							</ListItemButton>
 						</ListItem>
 
-						<ListItem disablePadding>
-							<ListItemButton>{/* Pay Order PlaceHohoder */}</ListItemButton>
-						</ListItem>
+						<ListItem disablePadding></ListItem>
 					</Paper>
 				</Grid>
 			</Grid>
