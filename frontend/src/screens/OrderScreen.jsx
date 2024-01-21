@@ -10,10 +10,16 @@ import {
 	Paper,
 	Typography,
 } from '@mui/material'
+import { usePayPalScriptReducer } from '@paypal/react-paypal-js'
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import CustomLink from '../components/CustomLink'
-import { useGetOrderDetailsQuery } from '../slices/ordersApiSlice'
+import {
+	useGetOrderDetailsQuery,
+	useGetPaypalClientIdQuery,
+	usePayOrderMutation,
+} from '../slices/ordersApiSlice'
 
 const OrderScreen = () => {
 	const { id: orderId } = useParams()
@@ -23,6 +29,17 @@ const OrderScreen = () => {
 		isLoading,
 		error,
 	} = useGetOrderDetailsQuery(orderId)
+
+	const [payOrder, { isLoading: isPayLoading }] = usePayOrderMutation()
+	const [{ isPending }, paypalDispatch] = usePayPalScriptReducer()
+	const {
+		data: paypal,
+		isLoading: loadingPaypal,
+		error: errorPaypal,
+	} = useGetPaypalClientIdQuery()
+
+	const { userInfo } = useSelector((state) => state.auth)
+
 	if (isLoading) return <div>Loading...</div>
 	if (error) return <div>{error}</div>
 	return (
