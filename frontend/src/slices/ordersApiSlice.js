@@ -10,6 +10,9 @@ export const ordersApiSlice = apiSlice.injectEndpoints({
 				body: { ...order },
 			}),
 		}),
+		getOrderDetails: builder.query({
+			query: (orderId) => `${ORDERS_URL}/${orderId}`,
+		}),
 	}),
 })
 
