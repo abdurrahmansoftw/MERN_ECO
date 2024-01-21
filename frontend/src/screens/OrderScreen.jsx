@@ -7,6 +7,7 @@ import {
 	ListItem,
 	ListItemButton,
 	ListItemText,
+	Paper,
 	Typography,
 } from '@mui/material'
 import React from 'react'
@@ -115,7 +116,89 @@ const OrderScreen = () => {
 						)}
 					</List>
 				</Grid>
-				<Grid item xs={12} md={4}></Grid>
+				<Grid item xs={12} md={4}>
+					<Paper elevation={2}>
+						<Typography component='h1' variant='h4' sx={{ p: 2 }}>
+							Order Summary
+						</Typography>
+						<List sx={{ display: 'flex', justifyContent: 'space-between' }}>
+							<ListItem disablePadding>
+								<ListItemButton>
+									<ListItemText>Items Price</ListItemText>
+								</ListItemButton>
+							</ListItem>
+							<Divider />
+							<ListItem disablePadding>
+								<ListItemButton>
+									<ListItemText>${order.itemsPrice} </ListItemText>
+								</ListItemButton>
+							</ListItem>
+						</List>
+						<Divider />
+						<List sx={{ display: 'flex', justifyContent: 'space-between' }}>
+							<ListItem disablePadding>
+								<ListItemButton>
+									<ListItemText>Shipping Price</ListItemText>
+								</ListItemButton>
+							</ListItem>
+							<Divider />
+							<ListItem disablePadding>
+								<ListItemButton>
+									<ListItemText>${order.shippingPrice}</ListItemText>
+								</ListItemButton>
+							</ListItem>
+						</List>
+						<Divider />
+						<List sx={{ display: 'flex', justifyContent: 'space-between' }}>
+							<ListItem disablePadding>
+								<ListItemButton>
+									<ListItemText>Tax Price</ListItemText>
+								</ListItemButton>
+							</ListItem>
+							<Divider />
+							<ListItem disablePadding>
+								<ListItemButton>
+									<ListItemText>${order.taxPrice}</ListItemText>
+								</ListItemButton>
+							</ListItem>
+						</List>
+						<Divider />
+						<List sx={{ display: 'flex', justifyContent: 'space-between' }}>
+							<ListItem disablePadding>
+								<ListItemButton>
+									<ListItemText>
+										<Typography variant='h5' component='h1'>
+											Total Price
+										</Typography>
+									</ListItemText>
+								</ListItemButton>
+							</ListItem>
+							<Divider />
+							<ListItem disablePadding>
+								<ListItemButton>
+									<ListItemText>
+										<Typography variant='h5' component='h1'>
+											${order.totalPrice}
+										</Typography>
+									</ListItemText>
+								</ListItemButton>
+							</ListItem>
+						</List>
+
+						<Divider />
+
+						<ListItem disablePadding>
+							<ListItemButton>
+								{error && <p>{error}</p>}
+								{isLoading && <p>Loading...</p>}
+							</ListItemButton>
+						</ListItem>
+
+						<ListItem disablePadding>
+							<ListItemButton>{/* Pay Order PlaceHohoder */}</ListItemButton>
+						</ListItem>
+					</Paper>
+				</Grid>
 			</Grid>
 		</Box>
 	)

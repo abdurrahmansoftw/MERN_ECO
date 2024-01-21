@@ -142,7 +142,7 @@ const PlaceOrderScreen = () => {
 				<Grid item xs={12} md={4}>
 					<Paper elevation={2}>
 						<Typography component='h1' variant='h4' sx={{ p: 2 }}>
-							Order Summary
+							Cart Summary
 						</Typography>
 						<List sx={{ display: 'flex', justifyContent: 'space-between' }}>
 							<ListItem disablePadding>
