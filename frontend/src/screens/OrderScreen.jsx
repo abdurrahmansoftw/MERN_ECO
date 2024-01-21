@@ -97,12 +97,12 @@ const OrderScreen = () => {
 								</ListItemText>
 							</ListItemButton>
 						</ListItem>
+						{order.isDelivered ? (
+							<Alert severity='success'>Delivered on {order.deliveredAt}</Alert>
+						) : (
+							<Alert severity='error'>Not Delivered</Alert>
+						)}
 					</List>
-					{order.isDelivered ? (
-						<Alert severity='success'>Delivered on {order.deliveredAt}</Alert>
-					) : (
-						<Alert severity='error'>Not Delivered</Alert>
-					)}
 				</Grid>
 				<Grid item xs={12} md={4}></Grid>
 			</Grid>
