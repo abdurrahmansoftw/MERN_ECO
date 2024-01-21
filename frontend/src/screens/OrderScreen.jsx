@@ -12,8 +12,8 @@ import {
 } from '@mui/material'
 import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js'
 import React, { useEffect } from 'react'
-import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import CustomLink from '../components/CustomLink'
 import {
 	useGetOrderDetailsQuery,
@@ -32,7 +32,7 @@ const OrderScreen = () => {
 
 	const [payOrder, { isLoading: loadingPay }] = usePayOrderMutation()
 
-	const { userInfo } = useSelector((state) => state.auth)
+	// const { userInfo } = useSelector((state) => state.auth)
 
 	const [{ isPending }, paypalDispatch] = usePayPalScriptReducer()
 	const {
@@ -58,10 +58,27 @@ const OrderScreen = () => {
 		}
 	}, [errorPayPal, loadingPayPal, paypal, order, paypalDispatch])
 
-	const createOrder = () => {}
-	const onApprove = () => {}
-	const onError = () => {}
-	const onCancel = () => {}
+	function onApprove(data, actions) {
+		return actions.order.capture().then(async function (details) {
+			try {
+				await payOrder({ orderId, details })
+				refetch()
+				toast.success('Order is paid')
+			} catch (err) {
+				toast.error(err?.data?.message || err.error)
+			}
+		})
+	}
+
+	function onCancel(data) {
+		toast.error('Order is not paid')
+	}
+
+	function onError(err) {
+		toast.error(err?.data?.message || err.error)
+	}
+
+	const createOrder = (data, actions) => {}
 
 	const onApproveTest = async () => {
 		console.log('onApproveTest')
@@ -240,17 +257,17 @@ const OrderScreen = () => {
 											<div>isPending</div>
 										) : (
 											<PayPalButtons
-												createOrder={createOrder}
 												onApprove={onApprove}
+												onCancel={onCancel}
 												onError={onError}
-											></PayPalButtons>
+												createOrder={createOrder}
+												disableFunding={['card']}
+											/>
 										)}
 									</ListItemText>
 								)}
 							</ListItemButton>
 						</ListItem>
-
-						<ListItem disablePadding></ListItem>
 					</Paper>
 				</Grid>
 			</Grid>

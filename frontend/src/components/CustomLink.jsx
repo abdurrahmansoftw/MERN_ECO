@@ -1,12 +1,20 @@
-import { Link as MuiLink } from '@mui/material'
+import styled from '@emotion/styled'
 import React from 'react'
 import { Link as RouterLink } from 'react-router-dom'
 
-const CustomLink = ({ to, children }) => {
+const CustomLinkStyle = styled(RouterLink)(({ theme }) => ({
+	color: theme.palette.primary.main,
+	textDecoration: 'none',
+	'&:hover': {
+		textDecoration: 'underline',
+	},
+}))
+
+const CustomLink = ({ to, children, ...props }) => {
 	return (
-		<RouterLink to={to} passHref LegacyBehavior>
-			<MuiLink>{children}</MuiLink>
-		</RouterLink>
+		<CustomLinkStyle to={to} {...props}>
+			{children}
+		</CustomLinkStyle>
 	)
 }
 
