@@ -21,7 +21,7 @@ const CheckoutStep = ({ stepOne, stepTwo, stepThree, stepFour }) => {
 				alignItems: 'center',
 			}}
 		>
-			<Stepper activeStep={stepOne ? 0 : -1}>
+			<Stepper activeStep={stepOne ? 1 : -1}>
 				{stepOne ? (
 					<Step>
 						<StepButton>
@@ -38,7 +38,7 @@ const CheckoutStep = ({ stepOne, stepTwo, stepThree, stepFour }) => {
 					</Step>
 				)}
 			</Stepper>
-			<Stepper activeStep={stepTwo ? 1 : -1}>
+			<Stepper activeStep={stepTwo ? 2 : -1}>
 				{stepTwo ? (
 					<Step>
 						<StepLabel>
@@ -55,7 +55,7 @@ const CheckoutStep = ({ stepOne, stepTwo, stepThree, stepFour }) => {
 					</Step>
 				)}
 			</Stepper>
-			<Stepper activeStep={stepThree ? 2 : -1}>
+			<Stepper activeStep={stepThree ? 3 : -1}>
 				{stepThree ? (
 					<Step>
 						<StepLabel>
@@ -72,7 +72,7 @@ const CheckoutStep = ({ stepOne, stepTwo, stepThree, stepFour }) => {
 					</Step>
 				)}
 			</Stepper>
-			<Stepper activeStep={stepFour ? 3 : -1}>
+			<Stepper activeStep={stepFour ? 4 : -1}>
 				{stepFour ? (
 					<Step>
 						<StepLabel>
