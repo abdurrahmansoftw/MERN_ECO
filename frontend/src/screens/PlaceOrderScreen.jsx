@@ -68,6 +68,24 @@ const PlaceOrderScreen = () => {
 							<ListItemButton>
 								<ListItemText>
 									<Typography variant='h5' component='h1'>
+										Payment Method
+									</Typography>
+								</ListItemText>
+							</ListItemButton>
+						</ListItem>
+						<Divider />
+
+						<ListItem disablePadding>
+							<ListItemButton>
+								<ListItemText>{cart.paymentMethod}</ListItemText>
+							</ListItemButton>
+						</ListItem>
+						<Divider />
+
+						<ListItem disablePadding>
+							<ListItemButton>
+								<ListItemText>
+									<Typography variant='h5' component='h1'>
 										Item Ordered ({cart.cartItems.length})
 									</Typography>
 								</ListItemText>
@@ -75,15 +93,16 @@ const PlaceOrderScreen = () => {
 						</ListItem>
 						<Divider />
 						{cart.cartItems.map((item) => (
-							<ListItem disablePadding key={item.product}>
+							<ListItem disablePadding key={item._id}>
 								<ListItemButton>
 									<img src={item.image} alt={item.name} className='w-16' />
 								</ListItemButton>
-								<ListItemButton
-									components={CustomLink}
-									to={`/product/${item.product}`}
-								>
-									<ListItemText>{item.name}</ListItemText>
+								<ListItemButton>
+									<ListItemText>
+										<CustomLink to={`/product/${item._id}`}>
+											{item.name}
+										</CustomLink>
+									</ListItemText>
 								</ListItemButton>
 								<ListItemButton>
 									<ListItemText>
