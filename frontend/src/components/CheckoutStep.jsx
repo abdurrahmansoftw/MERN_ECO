@@ -25,7 +25,7 @@ const CheckoutStep = ({ stepOne, stepTwo, stepThree, stepFour }) => {
 				{stepOne ? (
 					<Step>
 						<StepButton>
-							<Button component={CustomLink} href='/login'>
+							<Button component={CustomLink} to='/login'>
 								Sign In
 							</Button>
 						</StepButton>
@@ -42,7 +42,7 @@ const CheckoutStep = ({ stepOne, stepTwo, stepThree, stepFour }) => {
 				{stepTwo ? (
 					<Step>
 						<StepLabel>
-							<Button component={CustomLink} href='/shipping'>
+							<Button component={CustomLink} to='/shipping'>
 								Shipping
 							</Button>
 						</StepLabel>
@@ -59,7 +59,7 @@ const CheckoutStep = ({ stepOne, stepTwo, stepThree, stepFour }) => {
 				{stepThree ? (
 					<Step>
 						<StepLabel>
-							<Button component={CustomLink} href='/payment'>
+							<Button component={CustomLink} to='/payment'>
 								payment
 							</Button>
 						</StepLabel>
@@ -76,7 +76,7 @@ const CheckoutStep = ({ stepOne, stepTwo, stepThree, stepFour }) => {
 				{stepFour ? (
 					<Step>
 						<StepLabel>
-							<Button component={CustomLink} href='/placeOrder'>
+							<Button component={CustomLink} to='/placeOrder'>
 								Place Order
 							</Button>
 						</StepLabel>
