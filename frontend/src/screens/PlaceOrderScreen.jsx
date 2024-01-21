@@ -15,10 +15,13 @@ import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import CheckoutStep from '../components/CheckoutStep'
 import CustomLink from '../components/CustomLink'
+import { useCreateOrderMutation } from '../slices/ordersApiSlice'
 
 const PlaceOrderScreen = () => {
 	const navigate = useNavigate()
 	const cart = useSelector((state) => state.cart)
+
+	const [createOrder, { isLoading, error }] = useCreateOrderMutation()
 
 	useEffect(() => {
 		if (!cart.shippingAddress) {
@@ -28,8 +31,8 @@ const PlaceOrderScreen = () => {
 		}
 	}, [cart.shippingAddress, navigate, cart.paymentMethod])
 
-	const placeOrderHandler = () => {
-		console.log('order')
+	const placeOrderHandler = async () => {
+		console.log('place order')
 	}
 
 	return (
@@ -191,6 +194,14 @@ const PlaceOrderScreen = () => {
 						</List>
 
 						<Divider />
+
+						<ListItem disablePadding>
+							<ListItemButton>
+								{error && <p>{error}</p>}
+								{isLoading && <p>Loading...</p>}
+							</ListItemButton>
+						</ListItem>
+
 						<ListItem disablePadding>
 							<ListItemButton>
 								<Button
