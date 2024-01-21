@@ -1,5 +1,6 @@
 import {
 	Box,
+	CardMedia,
 	Divider,
 	Grid,
 	List,
@@ -12,6 +13,7 @@ import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import CheckoutStep from '../components/CheckoutStep'
+import CustomLink from '../components/CustomLink'
 
 const PlaceOrderScreen = () => {
 	const navigate = useNavigate()
@@ -29,7 +31,7 @@ const PlaceOrderScreen = () => {
 		<Box sx={{ flexGrow: 1, my: 3 }}>
 			<CheckoutStep stepOne stepTwo stepThree stepFour />
 			<Grid container spacing={2}>
-				<Grid item xs={8}>
+				<Grid item xs={12} md={8}>
 					<Typography component='h1' variant='h2'>
 						Place Order
 					</Typography>
@@ -66,13 +68,36 @@ const PlaceOrderScreen = () => {
 						<ListItem disablePadding>
 							<ListItemButton>
 								<ListItemText>
-									<Typography variant='h5' component='h1'></Typography>
+									<Typography variant='h5' component='h1'>
+										Item Ordered ({cart.cartItems.length})
+									</Typography>
 								</ListItemText>
 							</ListItemButton>
 						</ListItem>
+						<Divider />
+						{cart.cartItems.map((item) => (
+							<ListItem disablePadding key={item.product}>
+								<ListItemButton>
+									<CardMedia image={item.image} title={item.name} />
+								</ListItemButton>
+								<ListItemButton>
+									<ListItemText
+										components={CustomLink}
+										to={`/products/${item.product}`}
+									>
+										{item.name}
+									</ListItemText>
+								</ListItemButton>
+								<ListItemButton>
+									<ListItemText>
+										{item.qty} x ${item.price} = ${item.qty * item.price}
+									</ListItemText>
+								</ListItemButton>
+							</ListItem>
+						))}
 					</List>
 				</Grid>
-				<Grid item xs={4}>
+				<Grid item xs={12} md={4}>
 					<Typography component='h1' variant='h4'>
 						Order Summary
 					</Typography>
