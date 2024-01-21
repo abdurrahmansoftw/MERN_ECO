@@ -13,6 +13,7 @@ import {
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import CheckoutStep from '../components/CheckoutStep'
 import CustomLink from '../components/CustomLink'
 import { clearCartItems } from '../slices/cartSlice'
@@ -45,7 +46,10 @@ const PlaceOrderScreen = () => {
 				totalPrice: cart.totalPrice,
 			}).unwrap()
 			dispatch(clearCartItems())
-		} catch (error) {}
+			navigate(`/order/${res._id}`)
+		} catch (error) {
+			toast.error(error.message)
+		}
 	}
 
 	return (
