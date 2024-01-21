@@ -10,7 +10,7 @@ import {
 	Paper,
 	Typography,
 } from '@mui/material'
-import { usePayPalScriptReducer } from '@paypal/react-paypal-js'
+import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js'
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
@@ -30,35 +30,42 @@ const OrderScreen = () => {
 		error,
 	} = useGetOrderDetailsQuery(orderId)
 
-	const [payOrder, { isLoading: isPayLoading }] = usePayOrderMutation()
-	const [{ isPending }, paypalDispatch] = usePayPalScriptReducer()
-	const {
-		data: paypal,
-		isLoading: loadingPaypal,
-		error: errorPaypal,
-	} = useGetPaypalClientIdQuery()
+	const [payOrder, { isLoading: loadingPay }] = usePayOrderMutation()
 
 	const { userInfo } = useSelector((state) => state.auth)
 
+	const [{ isPending }, paypalDispatch] = usePayPalScriptReducer()
+	const {
+		data: paypal,
+		isLoading: loadingPayPal,
+		error: errorPayPal,
+	} = useGetPaypalClientIdQuery()
+
 	useEffect(() => {
-		if (!errorPaypal && !loadingPaypal && !paypal.clientId) {
-			const loadingPaypalScript = async () => {
-				await paypalDispatch({
+		if (!errorPayPal && !loadingPayPal && paypal.clientId) {
+			const loadPaypalScript = async () => {
+				paypalDispatch({
 					type: 'resetOptions',
-					value: {
-						'client-id': paypal.clientId,
-						currency: 'USD',
-					},
+					value: { 'client-id': paypal.clientId, currency: 'USD' },
 				})
 				paypalDispatch({ type: 'setLoadingStatus', value: 'pending' })
 			}
 			if (order && !order.isPaid) {
 				if (!window.paypal) {
-					loadingPaypalScript()
+					loadPaypalScript()
 				}
 			}
 		}
-	}, [errorPaypal, loadingPaypal, order, paypal, paypalDispatch])
+	}, [errorPayPal, loadingPayPal, paypal, order, paypalDispatch])
+
+	const createOrder = () => {}
+	const onApprove = () => {}
+	const onError = () => {}
+	const onCancel = () => {}
+
+	const onApproveTest = async () => {
+		console.log('onApproveTest')
+	}
 
 	if (isLoading) return <div>Loading...</div>
 	if (error) return <div>{error}</div>
@@ -226,8 +233,20 @@ const OrderScreen = () => {
 
 						<ListItem disablePadding>
 							<ListItemButton>
-								{error && <p>{error}</p>}
-								{isLoading && <p>Loading...</p>}
+								{!order.isPaid && (
+									<ListItemText>
+										{loadingPay && <div>loadingPay</div>}
+										{isPending ? (
+											<div>isPending</div>
+										) : (
+											<PayPalButtons
+												createOrder={createOrder}
+												onApprove={onApprove}
+												onError={onError}
+											></PayPalButtons>
+										)}
+									</ListItemText>
+								)}
 							</ListItemButton>
 						</ListItem>
 
