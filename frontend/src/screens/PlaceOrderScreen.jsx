@@ -150,6 +150,41 @@ const PlaceOrderScreen = () => {
 							</ListItem>
 						</List>
 						<Divider />
+						<List sx={{ display: 'flex', justifyContent: 'space-between' }}>
+							<ListItem disablePadding>
+								<ListItemButton>
+									<ListItemText>Tax Price</ListItemText>
+								</ListItemButton>
+							</ListItem>
+							<Divider />
+							<ListItem disablePadding>
+								<ListItemButton>
+									<ListItemText>${cart.taxPrice}</ListItemText>
+								</ListItemButton>
+							</ListItem>
+						</List>
+						<Divider />
+						<List sx={{ display: 'flex', justifyContent: 'space-between' }}>
+							<ListItem disablePadding>
+								<ListItemButton>
+									<ListItemText>
+										<Typography variant='h5' component='h1'>
+											Total Price
+										</Typography>
+									</ListItemText>
+								</ListItemButton>
+							</ListItem>
+							<Divider />
+							<ListItem disablePadding>
+								<ListItemButton>
+									<ListItemText>
+										<Typography variant='h5' component='h1'>
+											${cart.totalPrice}
+										</Typography>
+									</ListItemText>
+								</ListItemButton>
+							</ListItem>
+						</List>
 					</Paper>
 				</Grid>
 			</Grid>
