@@ -1,6 +1,7 @@
 import {
 	Alert,
 	Box,
+	Button,
 	Divider,
 	Grid,
 	List,
@@ -256,13 +257,23 @@ const OrderScreen = () => {
 										{isPending ? (
 											<div>isPending</div>
 										) : (
-											<PayPalButtons
-												onApprove={onApprove}
-												onCancel={onCancel}
-												onError={onError}
-												createOrder={createOrder}
-												disableFunding={['card']}
-											/>
+											<Box>
+												<Button
+													fullWidth
+													variant='contained'
+													color='primary'
+													onClick={onApproveTest}
+													sx={{ mb: 2 }}
+												>
+													Test Pay
+												</Button>
+												<PayPalButtons
+													createOrder={createOrder}
+													onApprove={onApprove}
+													onCancel={onCancel}
+													onError={onError}
+												/>
+											</Box>
 										)}
 									</ListItemText>
 								)}
