@@ -1,8 +1,24 @@
-import { Box, Button, Grid, Paper, TextField, Typography } from '@mui/material'
+import VisibilityIcon from '@mui/icons-material/Visibility'
+import {
+	Alert,
+	Box,
+	Button,
+	Grid,
+	Paper,
+	Table,
+	TableBody,
+	TableCell,
+	TableContainer,
+	TableHead,
+	TableRow,
+	TextField,
+	Typography,
+} from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
 import { setCredentials } from '../../slices/authSlice'
+import { useGetMyOrdersQuery } from '../../slices/ordersApiSlice'
 import { useProfileMutation } from '../../slices/usersApiSlice'
 
 const ProfileScreen = () => {
@@ -16,6 +32,12 @@ const ProfileScreen = () => {
 
 	const [updateProfile, { isLoading: loadingUpdateProfile }] =
 		useProfileMutation()
+
+	const {
+		data: orders,
+		isLoading: loadingOrders,
+		error: errorOrders,
+	} = useGetMyOrdersQuery()
 
 	useEffect(() => {
 		if (userInfo) {
@@ -45,12 +67,65 @@ const ProfileScreen = () => {
 	}
 
 	return (
-		<Box sx={{ flexGrow: 1, my: 2 }}>
+		<Paper sx={{ width: '100%', overflow: 'hidden' }}>
 			<Grid container spacing={2}>
 				<Grid item xs={12} sm={8}>
 					<Typography variant='h3' gutterBottom component='div'>
 						Order History
 					</Typography>
+					{loadingOrders ? (
+						<Box>loading</Box>
+					) : errorOrders ? (
+						<Alert severity='warning'>This is a warning Alert.</Alert>
+					) : (
+						<TableContainer>
+							<Table stickyHeader aria-label='sticky table' size='small'>
+								<TableHead>
+									<TableRow>
+										<TableCell>DATE</TableCell>
+										<TableCell>TOTAL</TableCell>
+										<TableCell>PAID</TableCell>
+										<TableCell>DELIVERED</TableCell>
+										<TableCell>Details</TableCell>
+									</TableRow>
+								</TableHead>
+								<TableBody>
+									{orders?.map((order) => (
+										<TableRow key={order._id}>
+											<TableCell>{order.createdAt.substring(0, 10)}</TableCell>
+											<TableCell>${order.totalPrice}</TableCell>
+											<TableCell>
+												{order.isPaid ? (
+													order.paidAt.substring(0, 10)
+												) : (
+													<Alert severity='warning'>Not Paid</Alert>
+												)}
+											</TableCell>
+											<TableCell>
+												{order.isDelivered ? (
+													order.deliveredAt.substring(0, 10)
+												) : (
+													<Alert severity='warning'>Not Delivered</Alert>
+												)}
+											</TableCell>
+											<TableCell>
+												<Button
+													variant='outlined'
+													color='primary'
+													size='small'
+													onClick={() => {
+														// history.push(`/order/${order._id}`)
+													}}
+												>
+													<VisibilityIcon />
+												</Button>
+											</TableCell>
+										</TableRow>
+									))}
+								</TableBody>
+							</Table>
+						</TableContainer>
+					)}
 				</Grid>
 				<Grid item xs={12} sm={4}>
 					<Paper sx={{ p: 2, height: '100%' }}>
@@ -119,7 +194,7 @@ const ProfileScreen = () => {
 					</Paper>
 				</Grid>
 			</Grid>
-		</Box>
+		</Paper>
 	)
 }
 
