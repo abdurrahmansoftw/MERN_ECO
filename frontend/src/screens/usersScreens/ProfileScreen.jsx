@@ -1,6 +1,7 @@
 import { Box, Button, Grid, Paper, TextField, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { toast } from 'react-toastify'
 import { useProfileMutation } from '../../slices/usersApiSlice'
 
 const ProfileScreen = () => {
@@ -22,10 +23,15 @@ const ProfileScreen = () => {
 		}
 	}, [userInfo])
 
-	const submitHandler = (e) => {
+	const submitHandler = async (e) => {
 		e.preventDefault()
-		// dispatch(register(name, email, password))
-		console.log('submitHandler')
+		if (password !== confirmPassword) {
+			toast.error('Password do not match')
+		} else {
+			try {
+				const res = await updateProfile({ name, email, password })
+			} catch (error) {}
+		}
 	}
 
 	return (
