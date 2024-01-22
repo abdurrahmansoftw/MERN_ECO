@@ -60,15 +60,7 @@ const OrderScreen = () => {
 	}, [errorPayPal, loadingPayPal, paypal, order, paypalDispatch])
 
 	function onApprove(data, actions) {
-		return actions.order.capture().then(async function (details) {
-			try {
-				await payOrder({ orderId, details })
-				refetch()
-				toast.success('Order is paid')
-			} catch (err) {
-				toast.error(err?.data?.message || err.error)
-			}
-		})
+		return actions.order.capture().then(async function (details) {})
 	}
 
 	function onCancel(data) {
