@@ -37,6 +37,7 @@ const ProfileScreen = () => {
 					password,
 				}).unwrap()
 				dispatch(setCredentials(res))
+				toast.success('Profile Updated')
 			} catch (error) {
 				toast.error(error?.data?.message || error?.data?.error || error.error)
 			}
@@ -46,7 +47,11 @@ const ProfileScreen = () => {
 	return (
 		<Box sx={{ flexGrow: 1, my: 2 }}>
 			<Grid container spacing={2}>
-				<Grid item xs={12} sm={8}></Grid>
+				<Grid item xs={12} sm={8}>
+					<Typography variant='h3' gutterBottom component='div'>
+						Order History
+					</Typography>
+				</Grid>
 				<Grid item xs={12} sm={4}>
 					<Paper sx={{ p: 2, height: '100%' }}>
 						<Typography variant='h3' gutterBottom component='div'>
