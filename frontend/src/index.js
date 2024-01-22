@@ -12,7 +12,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 	<React.StrictMode>
 		<ThemeProvider>
 			<Provider store={store}>
-				<PayPalScriptProvider deferLoading={true}>
+				<PayPalScriptProvider>
 					<RouterProvider router={router} />
 				</PayPalScriptProvider>
 			</Provider>
