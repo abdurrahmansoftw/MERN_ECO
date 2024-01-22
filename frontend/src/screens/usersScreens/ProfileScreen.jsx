@@ -1,6 +1,7 @@
 import { Box, Button, Grid, Paper, TextField, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useProfileMutation } from '../../slices/usersApiSlice'
 
 const ProfileScreen = () => {
 	const [name, setName] = useState('')
@@ -10,6 +11,9 @@ const ProfileScreen = () => {
 
 	const dispatch = useDispatch()
 	const { userInfo } = useSelector((state) => state.auth)
+
+	const [updateProfile, { isLoading: loadingUpdateProfile }] =
+		useProfileMutation()
 
 	useEffect(() => {
 		if (userInfo) {
@@ -86,8 +90,11 @@ const ProfileScreen = () => {
 								variant='contained'
 								sx={{ mt: 3, mb: 2 }}
 							>
-								Update Profile
+								Profile Update
 							</Button>
+							{loadingUpdateProfile && (
+								<Typography variant='h6'>Loading...</Typography>
+							)}
 						</Box>
 					</Paper>
 				</Grid>
