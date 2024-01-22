@@ -2,6 +2,7 @@ import { Box, Button, Grid, Paper, TextField, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
+import { setCredentials } from '../../slices/authSlice'
 import { useProfileMutation } from '../../slices/usersApiSlice'
 
 const ProfileScreen = () => {
@@ -29,8 +30,16 @@ const ProfileScreen = () => {
 			toast.error('Password do not match')
 		} else {
 			try {
-				const res = await updateProfile({ name, email, password })
-			} catch (error) {}
+				const res = await updateProfile({
+					_id: userInfo._id,
+					name,
+					email,
+					password,
+				}).unwrap()
+				dispatch(setCredentials(res))
+			} catch (error) {
+				toast.error(error?.data?.message || error?.data?.error || error.error)
+			}
 		}
 	}
 
