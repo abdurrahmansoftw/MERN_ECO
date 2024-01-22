@@ -16,6 +16,7 @@ import {
 } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router'
 import { toast } from 'react-toastify'
 import { setCredentials } from '../../slices/authSlice'
 import { useGetMyOrdersQuery } from '../../slices/ordersApiSlice'
@@ -27,6 +28,7 @@ const ProfileScreen = () => {
 	const [password, setPassowrd] = useState('')
 	const [confirmPassword, setConfirmPassword] = useState('')
 
+	const navigate = useNavigate()
 	const dispatch = useDispatch()
 	const { userInfo } = useSelector((state) => state.auth)
 
@@ -64,6 +66,10 @@ const ProfileScreen = () => {
 				toast.error(error?.data?.message || error?.data?.error || error.error)
 			}
 		}
+	}
+
+	const orderViewHandler = (order) => {
+		navigate(`/order/${order._id}`)
 	}
 
 	return (
@@ -113,9 +119,7 @@ const ProfileScreen = () => {
 													variant='outlined'
 													color='primary'
 													size='small'
-													onClick={() => {
-														// history.push(`/order/${order._id}`)
-													}}
+													onClick={orderViewHandler}
 												>
 													<VisibilityIcon />
 												</Button>
