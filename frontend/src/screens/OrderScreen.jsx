@@ -79,10 +79,26 @@ const OrderScreen = () => {
 		toast.error(err?.data?.message || err.error)
 	}
 
-	const createOrder = (data, actions) => {}
+	const createOrder = (data, actions) => {
+		return actions.order
+			.create({
+				purchase_units: [
+					{
+						amount: {
+							value: order.totalPrice,
+						},
+					},
+				],
+			})
+			.then((orderId) => {
+				return orderId
+			})
+	}
 
-	const onApproveTest = async () => {
+	async function onApproveTest() {
 		await payOrder({ orderId, details: { payer: {} } })
+		refetch()
+		toast.success('Order is Successfully paid')
 	}
 
 	if (isLoading) return <div>Loading...</div>
