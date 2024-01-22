@@ -24,7 +24,7 @@ const RegisterScreen = () => {
 	const [name, setName] = useState('')
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
-	const [confirmPassword, setConfirmPassowrd] = useState('')
+	const [confirmPassword, setConfirmPassword] = useState('')
 
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
@@ -109,7 +109,7 @@ const RegisterScreen = () => {
 						margin='normal'
 						fullWidth
 						value={confirmPassword}
-						onChange={(e) => setConfirmPassowrd(e.target.value)}
+						onChange={(e) => setConfirmPassword(e.target.value)}
 						label='Confirm Password'
 						type='password'
 						autoComplete='current-password'
