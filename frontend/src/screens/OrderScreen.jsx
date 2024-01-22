@@ -82,14 +82,14 @@ const OrderScreen = () => {
 	const createOrder = (data, actions) => {}
 
 	const onApproveTest = async () => {
-		console.log('onApproveTest')
+		await payOrder({ orderId, details: { payer: {} } })
 	}
 
 	if (isLoading) return <div>Loading...</div>
 	if (error) return <div>{error}</div>
 	return (
 		<Box sx={{ flexGrow: 1, my: 3 }}>
-			<Typography component='h1' variant='h4'>
+			<Typography component='h1' variant='h4' color='GrayText'>
 				Order Id: {order._id}
 			</Typography>
 
