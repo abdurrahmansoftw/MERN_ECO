@@ -17,6 +17,11 @@ const ProfileScreen = () => {
 		}
 	}, [userInfo])
 
+	const submitHandler = (e) => {
+		e.preventDefault()
+		// dispatch(register(name, email, password))
+	}
+
 	return <div>ProfileScreen</div>
 }
 
