@@ -7,7 +7,7 @@ import Navbar from '../components/Navbar'
 
 const AdminRoutes = () => {
 	const { userInfo } = useSelector((state) => state.auth)
-	return userInfo && userInfo.admin ? (
+	return userInfo && userInfo.isAdmin ? (
 		<Box>
 			<Navbar />
 			<Container maxWidth='xl'>
