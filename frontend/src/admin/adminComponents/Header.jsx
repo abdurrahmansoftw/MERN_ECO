@@ -4,6 +4,7 @@ import React from 'react'
 const Header = () => {
 	return (
 		<AppBar
+			elevation={0}
 			position='fixed'
 			sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
 		>
