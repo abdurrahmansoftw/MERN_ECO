@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom'
 import Dashboard from '../admin/Dashboard'
-import OrderListScreen from '../admin/OrderListScreen'
+import OrderListScreen from '../admin/adminScreens/OrderListScreen'
 import ErrorPage from '../pages/ErrorPage'
 import Layout from '../pages/Layout'
 import CartScreen from '../screens/CartScreen'
