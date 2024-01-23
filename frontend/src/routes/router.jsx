@@ -13,7 +13,7 @@ import ProductScreen from '../screens/ProductScreen'
 import RegisterScreen from '../screens/RegisterScreen'
 import ShippingScreen from '../screens/ShippingScreen'
 import ProfileScreen from '../screens/usersScreens/ProfileScreen'
-import AdminRoutes from './AdminRoute'
+import AdminRoutes from './AdminRoutes'
 import PrivateRoutes from './PrivateRoutes'
 
 const router = createBrowserRouter([
