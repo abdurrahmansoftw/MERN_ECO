@@ -40,7 +40,6 @@ const OrderScreen = () => {
 		useDeliverOrderMutation()
 
 	const { userInfo } = useSelector((state) => state.auth)
-
 	const [{ isPending }, paypalDispatch] = usePayPalScriptReducer()
 
 	const {
@@ -109,6 +108,7 @@ const OrderScreen = () => {
 
 	if (isLoading) return <div>Loading...</div>
 	if (error) return <div>{error}</div>
+	
 	return (
 		<Box sx={{ flexGrow: 1, my: 3 }}>
 			<Typography component='h1' variant='h4' color='GrayText'>
