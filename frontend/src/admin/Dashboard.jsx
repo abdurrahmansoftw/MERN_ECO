@@ -1,6 +1,5 @@
 import MailIcon from '@mui/icons-material/Mail'
 import InboxIcon from '@mui/icons-material/MoveToInbox'
-import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
 import CssBaseline from '@mui/material/CssBaseline'
 import Divider from '@mui/material/Divider'
@@ -12,6 +11,7 @@ import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
+import Header from './adminComponents/Header'
 
 const drawerWidth = 240
 
@@ -19,16 +19,7 @@ const Dashboard = () => {
 	return (
 		<Box sx={{ display: 'flex' }}>
 			<CssBaseline />
-			<AppBar
-				position='fixed'
-				sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
-			>
-				<Toolbar>
-					<Typography variant='h6' noWrap component='div'>
-						Admin Dashboard
-					</Typography>
-				</Toolbar>
-			</AppBar>
+			<Header />
 			<Drawer
 				variant='permanent'
 				sx={{
@@ -55,18 +46,6 @@ const Dashboard = () => {
 						))}
 					</List>
 					<Divider />
-					<List>
-						{['All mail', 'Trash', 'Spam'].map((text, index) => (
-							<ListItem key={text} disablePadding>
-								<ListItemButton>
-									<ListItemIcon>
-										{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-									</ListItemIcon>
-									<ListItemText primary={text} />
-								</ListItemButton>
-							</ListItem>
-						))}
-					</List>
 				</Box>
 			</Drawer>
 			<Box component='main' sx={{ flexGrow: 1, p: 3 }}>
