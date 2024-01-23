@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react'
 
 const OrderListScreen = () => {
-  return <div>OrderListScreen</div>;
-};
+	return <div>OrderListScreen</div>
+}
 
-export default OrderListScreen;
+export default OrderListScreen

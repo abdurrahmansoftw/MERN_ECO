@@ -41,6 +41,7 @@ const router = createBrowserRouter([
 			{ path: 'profile', element: <ProfileScreen /> },
 		],
 	},
+	/* Admin routes */
 	{
 		element: <AdminRoutes />,
 		children: [{ path: 'admin/orderlist', element: <OrderListScreen /> }],
