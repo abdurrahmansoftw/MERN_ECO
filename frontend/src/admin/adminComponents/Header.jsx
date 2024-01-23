@@ -1,7 +1,7 @@
 import { AppBar, Box, Button, Toolbar, Typography } from '@mui/material'
 import React from 'react'
 
-const navItems = ['Home', 'About', 'Contact']
+const navItems = ['Order List', 'Product List', 'User List']
 
 const Header = () => {
 	return (
