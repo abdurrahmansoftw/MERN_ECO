@@ -19,10 +19,6 @@ import { useGetOrdersQuery } from '../../slices/ordersApiSlice'
 const OrderListScreen = () => {
 	const { data: orders, isLoading, error } = useGetOrdersQuery()
 
-	const orderViewHandler = () => {
-		console.log('View Order')
-	}
-
 	return (
 		<Box component='main' sx={{ flexGrow: 1, my: 5, py: 5 }}>
 			{isLoading ? (
