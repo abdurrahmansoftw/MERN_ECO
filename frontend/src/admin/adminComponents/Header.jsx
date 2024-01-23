@@ -9,7 +9,7 @@ const Header = () => {
 				<Typography
 					variant='h6'
 					component={Link}
-					to='/dashboard'
+					to='/admin'
 					sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
 				>
 					Admin Panel
