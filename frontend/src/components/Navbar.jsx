@@ -6,7 +6,6 @@ import {
 	Badge,
 	Box,
 	Button,
-	Divider,
 	Menu,
 	MenuItem,
 	Toolbar,
@@ -89,7 +88,7 @@ const Navbar = () => {
 								onClick={handleClick}
 							>
 								<AccountCircleIcon fontSize='small' />{' '}
-								{userInfo.isAdmin === true ? 'Admin' : 'Account'}
+								{userInfo.isAdmin === true ? 'Admin' : userInfo.name}
 							</Button>
 							<Menu
 								id='fade-menu'
@@ -99,8 +98,6 @@ const Navbar = () => {
 								onClose={handleClose}
 								TransitionComponent={Fade}
 							>
-								<MenuItem onClick={handleClose}>{userInfo.name}</MenuItem>
-								<Divider />
 								<MenuItem onClick={handleClose} component={Link} to='/profile'>
 									Profile
 								</MenuItem>
@@ -112,6 +109,12 @@ const Navbar = () => {
 					) : (
 						<Button color='inherit' component={Link} to='/login'>
 							Login
+						</Button>
+					)}
+
+					{userInfo && userInfo.isAdmin && (
+						<Button color='inherit' component={Link} to='/admin/orderlist'>
+							Dashboard
 						</Button>
 					)}
 				</Toolbar>
