@@ -25,7 +25,7 @@ const Dashboard = () => {
 			>
 				<Toolbar>
 					<Typography variant='h6' noWrap component='div'>
-						Clipped drawer
+						Admin Dashboard
 					</Typography>
 				</Toolbar>
 			</AppBar>
