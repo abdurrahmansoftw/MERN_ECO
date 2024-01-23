@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography'
 
 const Dashboard = () => {
 	return (
-		<Box component='main' sx={{ flexGrow: 1, p: 3 }}>
+		<Box component='main' sx={{ flexGrow: 1, py: 5 }}>
 			<Toolbar />
 
 			<Typography paragraph>Dashboard</Typography>

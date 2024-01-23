@@ -1,4 +1,4 @@
-import { AppBar, Box, Button, Toolbar, Typography } from '@mui/material'
+import { AppBar, Button, Toolbar, Typography } from '@mui/material'
 import React from 'react'
 
 const navItems = ['Order List', 'Product List', 'User List']
@@ -14,13 +14,12 @@ const Header = () => {
 				>
 					Admin Panel
 				</Typography>
-				<Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-					{navItems.map((item) => (
-						<Button key={item} sx={{ color: '#fff' }}>
-							{item}
-						</Button>
-					))}
-				</Box>
+
+				{navItems.map((item) => (
+					<Button key={item} sx={{ color: '#fff' }}>
+						{item}
+					</Button>
+				))}
 			</Toolbar>
 		</AppBar>
 	)
