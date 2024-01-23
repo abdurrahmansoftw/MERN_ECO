@@ -1,4 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom'
+import OrderListScreen from '../admin/OrderListScreen'
 import ErrorPage from '../pages/ErrorPage'
 import Layout from '../pages/Layout'
 import CartScreen from '../screens/CartScreen'
@@ -12,6 +13,7 @@ import ProductScreen from '../screens/ProductScreen'
 import RegisterScreen from '../screens/RegisterScreen'
 import ShippingScreen from '../screens/ShippingScreen'
 import ProfileScreen from '../screens/usersScreens/ProfileScreen'
+import AdminRoutes from './AdminRoute'
 import PrivateRoutes from './PrivateRoutes'
 
 const router = createBrowserRouter([
@@ -38,6 +40,10 @@ const router = createBrowserRouter([
 			{ path: 'order/:id', element: <OrderScreen /> },
 			{ path: 'profile', element: <ProfileScreen /> },
 		],
+	},
+	{
+		element: <AdminRoutes />,
+		children: [{ path: 'admin/orderlist', element: <OrderListScreen /> }],
 	},
 ])
 
