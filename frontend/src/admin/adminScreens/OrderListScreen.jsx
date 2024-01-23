@@ -29,8 +29,8 @@ const OrderListScreen = () => {
 				<Typography variant='h4'>Order List</Typography>
 			)}
 
-			<TableContainer component={Paper}>
-				<Table sx={{ minWidth: 650 }}>
+			<TableContainer component={Paper} elevation={5}>
+				<Table>
 					<TableHead>
 						<TableRow>
 							<TableCell>User</TableCell>
