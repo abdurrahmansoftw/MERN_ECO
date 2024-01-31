@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { redirect, useNavigate, useParams } from 'react-router-dom'
+import { Link, redirect, useNavigate, useParams } from 'react-router-dom'
 import CustomLink from '../../components/CustomLink'
 import FromContainer from '../../components/FromContainer'
 import {
@@ -7,7 +7,7 @@ import {
 	useUpdateProductMutation,
 } from '../../slices/productsApiSlice'
 
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
+import EditIcon from '@mui/icons-material/Edit'
 import { Avatar, Box, Button, Grid, TextField, Typography } from '@mui/material'
 
 const ProductEditScreen = () => {
@@ -69,10 +69,9 @@ const ProductEditScreen = () => {
 	console.log(product)
 	return (
 		<React.Fragment>
-			<Button LinkComponent={CustomLink} to='/admin/productlist'>
+			<Button component={Link} to='/admin/productlist'>
 				Go Back
 			</Button>
-
 			<FromContainer>
 				<Box
 					sx={{
@@ -83,10 +82,10 @@ const ProductEditScreen = () => {
 					}}
 				>
 					<Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-						<LockOutlinedIcon />
+						<EditIcon />
 					</Avatar>
 					<Typography component='h1' variant='h5'>
-						Sign in
+						Edit Product
 					</Typography>
 					<Box
 						component='form'
@@ -105,6 +104,71 @@ const ProductEditScreen = () => {
 							value={name}
 							onChange={(e) => setName(e.target.value)}
 							autoComplete='name'
+							autoFocus
+						/>
+
+						<TextField
+							margin='normal'
+							required
+							fullWidth
+							id='price'
+							label='price'
+							name='price'
+							value={price}
+							onChange={(e) => setPrice(e.target.value)}
+							autoComplete='price'
+							autoFocus
+						/>
+
+						<TextField
+							margin='normal'
+							required
+							fullWidth
+							id='image'
+							label='image'
+							name='image'
+							value={image}
+							onChange={(e) => setImage(e.target.value)}
+							autoComplete='image'
+							autoFocus
+						/>
+
+						<TextField
+							margin='normal'
+							required
+							fullWidth
+							id='brand'
+							label='brand'
+							name='brand'
+							value={brand}
+							onChange={(e) => setBrand(e.target.value)}
+							autoComplete='brand'
+							autoFocus
+						/>
+
+						<TextField
+							margin='normal'
+							required
+							fullWidth
+							id='category'
+							label='category'
+							name='category'
+							value={category}
+							onChange={(e) => setCategory(e.target.value)}
+							autoComplete='category'
+							autoFocus
+						/>
+
+						<TextField
+							margin='normal'
+							required
+							fullWidth
+							id='countInStock'
+							label='countInStock'
+							name='countInStock'
+							value={countInStock}
+							onChange={(e) => setCountInStock(e.target.value)}
+							autoComplete='countInStock'
 							autoFocus
 						/>
 
