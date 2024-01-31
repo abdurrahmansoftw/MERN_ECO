@@ -33,7 +33,7 @@ const ProductListScreen = () => {
 						my: 2,
 					}}
 				>
-					<Typography variant='h4'>Order List</Typography>
+					<Typography variant='h4'>Product List</Typography>
 					<Button variant='outlined'>Create New Product</Button>
 				</Box>
 			)}
