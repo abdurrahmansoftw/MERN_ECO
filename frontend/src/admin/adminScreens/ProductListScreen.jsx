@@ -16,10 +16,20 @@ import {
 } from '@mui/material'
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { useGetProductsQuery } from '../../slices/productsApiSlice'
+import {
+	useCreateProductMutation,
+	useGetProductsQuery,
+} from '../../slices/productsApiSlice'
 
 const ProductListScreen = () => {
 	const { data: products, isLoading, error } = useGetProductsQuery()
+	const [createProduct, { isLoading: loadingCreate }] =
+		useCreateProductMutation()
+
+	const createProductHandler = async () => {
+		const { data: newProduct } = await createProduct()
+		console.log(newProduct)
+	}
 
 	const deleteHandler = (id) => {
 		console.log(id)
@@ -41,7 +51,9 @@ const ProductListScreen = () => {
 					}}
 				>
 					<Typography variant='h4'>Product List</Typography>
-					<Button variant='outlined'>Create New Product</Button>
+					<Button variant='outlined' onClick={createProductHandler}>
+						Create New Product
+					</Button>
 				</Box>
 			)}
 
