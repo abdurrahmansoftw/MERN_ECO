@@ -16,19 +16,26 @@ import {
 } from '@mui/material'
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import {
 	useCreateProductMutation,
 	useGetProductsQuery,
 } from '../../slices/productsApiSlice'
 
 const ProductListScreen = () => {
-	const { data: products, isLoading, error } = useGetProductsQuery()
+	const { data: products, isLoading, error, refetch } = useGetProductsQuery()
 	const [createProduct, { isLoading: loadingCreate }] =
 		useCreateProductMutation()
 
 	const createProductHandler = async () => {
-		const { data: newProduct } = await createProduct()
-		console.log(newProduct)
+		if (window.confirm('Are you sure? to create a new product')) {
+			try {
+				await createProduct()
+				refetch()
+			} catch (error) {
+				toast.error(error.message)
+			}
+		}
 	}
 
 	const deleteHandler = (id) => {
