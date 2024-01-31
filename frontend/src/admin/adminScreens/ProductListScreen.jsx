@@ -2,6 +2,7 @@ import {
 	Alert,
 	Box,
 	Button,
+	CardMedia,
 	Paper,
 	Table,
 	TableBody,
@@ -42,6 +43,7 @@ const ProductListScreen = () => {
 					<TableHead>
 						<TableRow>
 							<TableCell>NAME</TableCell>
+							<TableCell>Image</TableCell>
 							<TableCell>PRICE</TableCell>
 							<TableCell>CATEGORY</TableCell>
 							<TableCell>BRAND</TableCell>
@@ -56,10 +58,20 @@ const ProductListScreen = () => {
 								sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
 							>
 								<TableCell>{product.name}</TableCell>
+								<TableCell>
+									<CardMedia
+										component='img'
+										image={product.image}
+										alt={product.name}
+										sx={{ width: 40 }}
+									/>
+								</TableCell>
 								<TableCell>${product.price}</TableCell>
 								<TableCell>{product.category}</TableCell>
 								<TableCell>{product.brand}</TableCell>
-								<TableCell>
+								<TableCell
+									sx={{ display: 'flex', justifyContent: 'space-between' }}
+								>
 									<Button variant='outlined'>Edit</Button>
 									<Button variant='outlined'>Delete</Button>
 								</TableCell>
