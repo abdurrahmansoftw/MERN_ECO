@@ -33,7 +33,7 @@ const ProductListScreen = () => {
 				await createProduct()
 				refetch()
 			} catch (error) {
-				toast.error(error.message)
+				toast.error(error?.data?.message || error.message)
 			}
 		}
 	}
