@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom'
 import Dashboard from '../admin/Dashboard'
 import OrderListScreen from '../admin/adminScreens/OrderListScreen'
+import ProductEditScreen from '../admin/adminScreens/ProductEditScreen'
 import ProductListScreen from '../admin/adminScreens/ProductListScreen'
 import ErrorPage from '../pages/ErrorPage'
 import Layout from '../pages/Layout'
@@ -50,6 +51,7 @@ const router = createBrowserRouter([
 			{ path: 'admin', element: <Dashboard /> },
 			{ path: 'admin/orderlist', element: <OrderListScreen /> },
 			{ path: 'admin/productlist', element: <ProductListScreen /> },
+			{ path: 'admin/product/:id', element: <ProductEditScreen /> },
 		],
 	},
 ])
