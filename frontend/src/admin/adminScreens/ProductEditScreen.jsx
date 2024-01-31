@@ -1,7 +1,10 @@
 import { Typography } from '@mui/material'
-import React, { useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { useGetProductDetailsQuery } from '../../slices/productsApiSlice'
+import React, { useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+import {
+	useGetProductDetailsQuery,
+	useUpdateProductMutation,
+} from '../../slices/productsApiSlice'
 
 const ProductEditScreen = () => {
 	const { id: productId } = useParams()
@@ -20,6 +23,23 @@ const ProductEditScreen = () => {
 		error,
 		refetch,
 	} = useGetProductDetailsQuery(productId)
+
+	const [updateProduct, { isLoading: updateLoading }] =
+		useUpdateProductMutation()
+
+	const navigate = useNavigate()
+
+	useEffect(() => {
+		if (product) {
+			setName(product.name)
+			setPrice(product.price)
+			setImage(product.image)
+			setBrand(product.brand)
+			setCategory(product.category)
+			setCountInStock(product.countInStock)
+			setDescription(product.description)
+		}
+	}, [product])
 
 	console.log(product)
 	return (
