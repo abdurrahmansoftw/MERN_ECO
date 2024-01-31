@@ -49,7 +49,7 @@ const ProductEditScreen = () => {
 		event.preventDefault()
 
 		const updatedProduct = {
-			_id: productId,
+			productId,
 			name,
 			price,
 			image,
