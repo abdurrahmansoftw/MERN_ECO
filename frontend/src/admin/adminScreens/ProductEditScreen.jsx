@@ -59,7 +59,7 @@ const ProductEditScreen = () => {
 			description,
 		}
 		const result = await updateProduct(updatedProduct).unwrap()
-		if (result.error) { 
+		if (result.error) {
 			toast.error(result.error)
 		} else {
 			toast.success('Product Updated')
@@ -86,6 +86,9 @@ const ProductEditScreen = () => {
 					<Typography component='h1' variant='h5'>
 						Edit Product
 					</Typography>
+
+					{error && <Typography variant='h6'>{error}</Typography>}
+					{isLoading && <Typography variant='h6'>Loading...</Typography>}
 					<Box
 						component='form'
 						onSubmit={updateHandleSubmit}
@@ -116,19 +119,6 @@ const ProductEditScreen = () => {
 							value={price}
 							onChange={(e) => setPrice(e.target.value)}
 							autoComplete='price'
-							autoFocus
-						/>
-
-						<TextField
-							margin='normal'
-							required
-							fullWidth
-							id='image'
-							label='image'
-							name='image'
-							value={image}
-							onChange={(e) => setImage(e.target.value)}
-							autoComplete='image'
 							autoFocus
 						/>
 

@@ -1,3 +1,4 @@
+import AddIcon from '@mui/icons-material/Add'
 import CreateIcon from '@mui/icons-material/Create'
 import DeleteIcon from '@mui/icons-material/Delete'
 import {
@@ -63,7 +64,7 @@ const ProductListScreen = () => {
 						variant='outlined'
 						onClick={createProductHandler}
 					>
-						Create New Product
+						<AddIcon /> Create New Product
 					</Button>
 				</Box>
 			)}
