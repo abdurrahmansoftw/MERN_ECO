@@ -7,8 +7,8 @@ export const productsApiSlice = apiSlice.injectEndpoints({
 			query: () => ({
 				url: PRODUCTS_URL,
 			}),
-			providesTags: ['Products'],
 			keepUnusedDataFor: 5,
+			providesTags: ['Products'],
 		}),
 		getProductDetails: builder.query({
 			query: (productId) => ({
@@ -21,7 +21,7 @@ export const productsApiSlice = apiSlice.injectEndpoints({
 				url: PRODUCTS_URL,
 				method: 'POST',
 			}),
-			invalidatesTags: ['Products'],
+			invalidatesTags: ['Product'],
 		}),
 		updateProduct: builder.mutation({
 			query: (data) => ({
