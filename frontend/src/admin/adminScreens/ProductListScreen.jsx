@@ -104,7 +104,7 @@ const ProductListScreen = () => {
 								>
 									<Button
 										component={Link}
-										to={`/admin/product/${product._id}`}
+										to={`/admin/product/${product._id}/edit`}
 										variant='outlined'
 										color='success'
 									>

@@ -51,7 +51,7 @@ const router = createBrowserRouter([
 			{ path: 'admin', element: <Dashboard /> },
 			{ path: 'admin/orderlist', element: <OrderListScreen /> },
 			{ path: 'admin/productlist', element: <ProductListScreen /> },
-			{ path: 'admin/product/:id', element: <ProductEditScreen /> },
+			{ path: 'admin/product/:id/edit', element: <ProductEditScreen /> },
 		],
 	},
 ])
