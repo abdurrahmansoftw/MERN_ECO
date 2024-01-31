@@ -29,8 +29,7 @@ const ProductListScreen = () => {
 						display: 'flex',
 						justifyContent: 'space-between',
 						flexGrow: 1,
-						my: 5,
-						py: 5,
+						my: 2,
 					}}
 				>
 					<Typography variant='h4'>Order List</Typography>
@@ -42,18 +41,30 @@ const ProductListScreen = () => {
 				<Table>
 					<TableHead>
 						<TableRow>
-							<TableCell>User</TableCell>
-							<TableCell>DATE</TableCell>
-							<TableCell>TOTAL</TableCell>
-							<TableCell>PAID</TableCell>
-							<TableCell>DELIVERED</TableCell>
-							<TableCell>Details</TableCell>
+							<TableCell>NAME</TableCell>
+							<TableCell>PRICE</TableCell>
+							<TableCell>CATEGORY</TableCell>
+							<TableCell>BRAND</TableCell>
+
+							<TableCell>Actions</TableCell>
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						<TableRow>
-							<TableCell>order.user.name</TableCell>
-						</TableRow>
+						{products?.map((product) => (
+							<TableRow
+								key={product._id}
+								sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+							>
+								<TableCell>{product.name}</TableCell>
+								<TableCell>${product.price}</TableCell>
+								<TableCell>{product.category}</TableCell>
+								<TableCell>{product.brand}</TableCell>
+								<TableCell>
+									<Button variant='outlined'>Edit</Button>
+									<Button variant='outlined'>Delete</Button>
+								</TableCell>
+							</TableRow>
+						))}
 					</TableBody>
 				</Table>
 			</TableContainer>
