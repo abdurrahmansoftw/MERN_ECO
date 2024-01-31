@@ -71,6 +71,20 @@ const ProductEditScreen = () => {
 			navigate('/admin/productlist')
 		}
 	}
+
+	const handleUpload = async (event) => {
+		event.preventDefault()
+		const formData = new FormData()
+		formData.append('image', image)
+		const result = await uploadProductImage(formData).unwrap()
+		if (result.error) {
+			toast.error(result.error)
+		} else {
+			toast.success('Image Uploaded')
+			setImage(result.image)
+		}
+	}
+
 	return (
 		<React.Fragment>
 			<Button component={Link} to='/admin/productlist'>
@@ -89,7 +103,7 @@ const ProductEditScreen = () => {
 						<EditIcon />
 					</Avatar>
 					<Typography component='h1' variant='h5'>
-						Edit Product
+						Update Product
 					</Typography>
 
 					{error && <Typography variant='h6'>{error}</Typography>}
@@ -113,6 +127,28 @@ const ProductEditScreen = () => {
 							autoComplete='name'
 							autoFocus
 						/>
+
+						<div>
+							<TextField
+								margin='normal'
+								required
+								fullWidth
+								id='image'
+								label='image'
+								name='image'
+								value={image}
+								onChange={(e) => setImage}
+								autoComplete='image'
+								autoFocus
+							/>
+							<Button
+								variant='contained'
+								color='primary'
+								onClick={handleUpload}
+							>
+								Upload
+							</Button>
+						</div>
 
 						<TextField
 							margin='normal'
@@ -164,20 +200,6 @@ const ProductEditScreen = () => {
 							onChange={(e) => setCountInStock(e.target.value)}
 							autoComplete='countInStock'
 							autoFocus
-						/>
-
-						<TextField
-							margin='normal'
-							required
-							fullWidth
-							type='file' // Replace 'component' with 'type="file"'
-							id='image'
-							label='Upload image'
-							name='file'
-							onChange={(e) => setImage}
-							InputLabelProps={{
-								shrink: true,
-							}}
 						/>
 
 						<Button
