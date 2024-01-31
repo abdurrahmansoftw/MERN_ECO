@@ -1,3 +1,5 @@
+import CreateIcon from '@mui/icons-material/Create'
+import DeleteIcon from '@mui/icons-material/Delete'
 import {
 	Alert,
 	Box,
@@ -72,8 +74,12 @@ const ProductListScreen = () => {
 								<TableCell
 									sx={{ display: 'flex', justifyContent: 'space-between' }}
 								>
-									<Button variant='outlined'>Edit</Button>
-									<Button variant='outlined'>Delete</Button>
+									<Button variant='outlined' color='success'>
+										{<CreateIcon />}
+									</Button>
+									<Button variant='outlined' color='warning'>
+										{<DeleteIcon />}
+									</Button>
 								</TableCell>
 							</TableRow>
 						))}
