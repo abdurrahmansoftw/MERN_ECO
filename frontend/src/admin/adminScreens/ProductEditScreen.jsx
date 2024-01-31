@@ -73,16 +73,7 @@ const ProductEditScreen = () => {
 	}
 
 	const handleUpload = async (event) => {
-		event.preventDefault()
-		const formData = new FormData()
-		formData.append('image', image)
-		const result = await uploadProductImage(formData).unwrap()
-		if (result.error) {
-			toast.error(result.error)
-		} else {
-			toast.success('Image Uploaded')
-			setImage(result.image)
-		}
+		console.log(event.target.files[0])
 	}
 
 	return (
@@ -134,19 +125,21 @@ const ProductEditScreen = () => {
 								required
 								fullWidth
 								id='image'
-								label='image'
+								label='Image URL'
 								name='image'
 								value={image}
-								onChange={(e) => setImage}
+								onChange={(e) => setImage(e.target.value)}
 								autoComplete='image'
 								autoFocus
 							/>
 							<Button
-								variant='contained'
+								fullWidth
+								disabled={loadingUpload}
+								variant='outlined'
 								color='primary'
 								onClick={handleUpload}
 							>
-								Upload
+								select image
 							</Button>
 						</div>
 
