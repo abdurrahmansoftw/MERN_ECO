@@ -8,6 +8,7 @@ import FromContainer from '../../components/FromContainer'
 import {
 	useGetProductDetailsQuery,
 	useUpdateProductMutation,
+	useUploadProductImageMutation,
 } from '../../slices/productsApiSlice'
 
 const ProductEditScreen = () => {
@@ -30,6 +31,9 @@ const ProductEditScreen = () => {
 
 	const [updateProduct, { isLoading: updateLoading }] =
 		useUpdateProductMutation()
+
+	const [uploadProductImage, { isLoading: loadingUpload }] =
+		useUploadProductImageMutation()
 
 	const navigate = useNavigate()
 
@@ -59,6 +63,7 @@ const ProductEditScreen = () => {
 			description,
 		}
 		const result = await updateProduct(updatedProduct).unwrap()
+		refetch()
 		if (result.error) {
 			toast.error(result.error)
 		} else {
@@ -159,6 +164,20 @@ const ProductEditScreen = () => {
 							onChange={(e) => setCountInStock(e.target.value)}
 							autoComplete='countInStock'
 							autoFocus
+						/>
+
+						<TextField
+							margin='normal'
+							required
+							fullWidth
+							type='file' // Replace 'component' with 'type="file"'
+							id='image'
+							label='Upload image'
+							name='file'
+							onChange={(e) => setImage}
+							InputLabelProps={{
+								shrink: true,
+							}}
 						/>
 
 						<Button
