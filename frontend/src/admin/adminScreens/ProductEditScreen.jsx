@@ -1,16 +1,29 @@
+import CloudUploadIcon from '@mui/icons-material/CloudUpload'
 import SyncIcon from '@mui/icons-material/Sync'
 import UploadFileIcon from '@mui/icons-material/UploadFile'
-import { Avatar, Box, Button, Grid, TextField, Typography } from '@mui/material'
+import { Avatar, Box, Button, TextField, Typography } from '@mui/material'
+import { styled } from '@mui/material/styles'
 import React, { useEffect, useState } from 'react'
-import { Link, redirect, useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import CustomLink from '../../components/CustomLink'
 import FromContainer from '../../components/FromContainer'
 import {
 	useGetProductDetailsQuery,
 	useUpdateProductMutation,
 	useUploadProductImageMutation,
 } from '../../slices/productsApiSlice'
+
+const VisuallyHiddenInput = styled('input')({
+	clip: 'rect(0 0 0 0)',
+	clipPath: 'inset(50%)',
+	height: 1,
+	overflow: 'hidden',
+	position: 'absolute',
+	bottom: 0,
+	left: 0,
+	whiteSpace: 'nowrap',
+	width: 1,
+})
 
 const ProductEditScreen = () => {
 	const { id: productId } = useParams()
@@ -73,16 +86,15 @@ const ProductEditScreen = () => {
 		}
 	}
 
-	const UploadFileHandler = async (event) => {
-		const file = event.target.files[0]
+	const uploadFileHandler = async (e) => {
 		const formData = new FormData()
-		formData.append('image', file)
-
-		const result = await uploadProductImage(formData).unwrap()
-		if (result.error) {
-			toast.error(result.error)
-		} else {
-			setImage(result)
+		formData.append('image', e.target.files[0])
+		try {
+			const res = await uploadProductImage(formData).unwrap()
+			toast.success(res.message)
+			setImage(res.image)
+		} catch (err) {
+			toast.error(err?.data?.message || err.error)
 		}
 	}
 
@@ -143,13 +155,13 @@ const ProductEditScreen = () => {
 								autoFocus
 							/>
 							<Button
-								fullWidth
+								component='label'
+								variant='contained'
+								startIcon={<CloudUploadIcon />}
 								disabled={loadingUpload}
-								variant='outlined'
-								color='primary'
-								onClick={UploadFileHandler}
 							>
-								<UploadFileIcon /> Upload Image
+								Upload file
+								<VisuallyHiddenInput type='file' onClick={uploadFileHandler} />
 							</Button>
 						</div>
 
@@ -212,6 +224,7 @@ const ProductEditScreen = () => {
 							sx={{ mt: 3, mb: 3 }}
 							disabled={isLoading}
 						>
+							<UploadFileIcon />{' '}
 							{updateLoading ? 'Loading...' : 'Update Product'}
 						</Button>
 
@@ -220,22 +233,6 @@ const ProductEditScreen = () => {
 								Loading...
 							</Typography>
 						)}
-
-						<Grid container>
-							<Grid item xs>
-								<CustomLink to='/forgotpassword' variant='body2'>
-									Forgot password?
-								</CustomLink>
-							</Grid>
-							<Grid item>
-								<CustomLink
-									to={redirect ? `/register?redirect=${redirect}` : '/register'}
-									variant='body2'
-								>
-									{"Don't have an account? Sign Up"}
-								</CustomLink>
-							</Grid>
-						</Grid>
 					</Box>
 				</Box>
 			</FromContainer>

@@ -32,7 +32,7 @@ app.get('/', (req, res) => {
 app.use('/api/users', userRoutes)
 app.use('/api/products', productRoutes)
 app.use('/api/orders', orderRoutes)
-app.use('/uploads', uploadRoutes)
+app.use('/api/upload', uploadRoutes)
 
 // paypal route
 app.get('/api/config/paypal', (req, res) =>
