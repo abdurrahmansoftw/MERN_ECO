@@ -47,4 +47,5 @@ export const {
 	useGetProductDetailsQuery,
 	useCreateProductMutation,
 	useUpdateProductMutation,
+	useUploadProductImageMutation,
 } = productsApiSlice
