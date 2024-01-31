@@ -1,14 +1,14 @@
+import EditIcon from '@mui/icons-material/Edit'
+import { Avatar, Box, Button, Grid, TextField, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { Link, redirect, useNavigate, useParams } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import CustomLink from '../../components/CustomLink'
 import FromContainer from '../../components/FromContainer'
 import {
 	useGetProductDetailsQuery,
 	useUpdateProductMutation,
 } from '../../slices/productsApiSlice'
-
-import EditIcon from '@mui/icons-material/Edit'
-import { Avatar, Box, Button, Grid, TextField, Typography } from '@mui/material'
 
 const ProductEditScreen = () => {
 	const { id: productId } = useParams()
@@ -57,6 +57,13 @@ const ProductEditScreen = () => {
 			category,
 			countInStock,
 			description,
+		}
+		const result = await updateProduct(updatedProduct).unwrap()
+		if (result.error) {
+			toast.error(result.error)
+		} else {
+			toast.success('Product Updated')
+			navigate('/admin/productlist')
 		}
 	}
 	return (
