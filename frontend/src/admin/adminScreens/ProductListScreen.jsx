@@ -15,10 +15,15 @@ import {
 	Typography,
 } from '@mui/material'
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { useGetProductsQuery } from '../../slices/productsApiSlice'
 
 const ProductListScreen = () => {
 	const { data: products, isLoading, error } = useGetProductsQuery()
+
+	const deleteHandler = (id) => {
+		console.log(id)
+	}
 	return (
 		<Box component='main' sx={{ flexGrow: 1, my: 5, py: 5 }}>
 			{isLoading ? (
@@ -74,10 +79,19 @@ const ProductListScreen = () => {
 								<TableCell
 									sx={{ display: 'flex', justifyContent: 'space-between' }}
 								>
-									<Button variant='outlined' color='success'>
+									<Button
+										component={Link}
+										to={`/admin/product/${product._id}`}
+										variant='outlined'
+										color='success'
+									>
 										{<CreateIcon />}
 									</Button>
-									<Button variant='outlined' color='warning'>
+									<Button
+										onClick={() => deleteHandler(product._id)}
+										variant='outlined'
+										color='warning'
+									>
 										{<DeleteIcon />}
 									</Button>
 								</TableCell>
