@@ -1,4 +1,5 @@
 import {
+	Alert,
 	Box,
 	Button,
 	Paper,
@@ -9,15 +10,12 @@ import {
 	TableHead,
 	TableRow,
 	Typography,
-} from '@material-ui/core'
-import VisibilityIcon from '@material-ui/icons/Visibility'
-import { Alert } from '@material-ui/lab'
+} from '@mui/material'
 import React from 'react'
-import { useGetOrdersQuery } from '../../slices/productsApiSlice'
-import CustomLink from '../CustomLink'
+import { useGetProductsQuery } from '../../slices/productsApiSlice'
 
 const ProductListScreen = () => {
-	const { data: orders, isLoading, error } = useGetOrdersQuery()
+	const { data: products, isLoading, error } = useGetProductsQuery()
 	return (
 		<Box component='main' sx={{ flexGrow: 1, my: 5, py: 5 }}>
 			{isLoading ? (
@@ -25,7 +23,19 @@ const ProductListScreen = () => {
 			) : error ? (
 				<Alert severity='warning'>{error}</Alert>
 			) : (
-				<Typography variant='h4'>Order List</Typography>
+				<Box
+					component='main'
+					sx={{
+						display: 'flex',
+						justifyContent: 'space-between',
+						flexGrow: 1,
+						my: 5,
+						py: 5,
+					}}
+				>
+					<Typography variant='h4'>Order List</Typography>
+					<Button variant='outlined'>Create New Product</Button>
+				</Box>
 			)}
 
 			<TableContainer component={Paper} elevation={5}>
@@ -41,41 +51,9 @@ const ProductListScreen = () => {
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						{orders?.map((order) => (
-							<TableRow
-								key={order._id}
-								sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-							>
-								<TableCell>{order.user.name}</TableCell>
-								<TableCell>{order.createdAt.substring(0, 10)}</TableCell>
-								<TableCell>${order.totalPrice}</TableCell>
-								<TableCell>
-									{order.isPaid ? (
-										order.paidAt.substring(0, 10)
-									) : (
-										<Alert severity='warning'>Not Paid</Alert>
-									)}
-								</TableCell>
-								<TableCell>
-									{order.isDelivered ? (
-										order.deliveredAt.substring(0, 10)
-									) : (
-										<Alert severity='warning'>Not Delivered</Alert>
-									)}
-								</TableCell>
-								<TableCell>
-									<Button
-										variant='outlined'
-										color='primary'
-										size='small'
-										component={CustomLink}
-										to={`/order/${order._id}`}
-									>
-										<VisibilityIcon />
-									</Button>
-								</TableCell>
-							</TableRow>
-						))}
+						<TableRow>
+							<TableCell>order.user.name</TableCell>
+						</TableRow>
 					</TableBody>
 				</Table>
 			</TableContainer>

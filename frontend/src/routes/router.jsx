@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom'
 import Dashboard from '../admin/Dashboard'
 import OrderListScreen from '../admin/adminScreens/OrderListScreen'
+import ProductListScreen from '../admin/adminScreens/ProductListScreen'
 import ErrorPage from '../pages/ErrorPage'
 import Layout from '../pages/Layout'
 import CartScreen from '../screens/CartScreen'
@@ -48,6 +49,7 @@ const router = createBrowserRouter([
 		children: [
 			{ path: 'admin', element: <Dashboard /> },
 			{ path: 'admin/orderlist', element: <OrderListScreen /> },
+			{ path: 'admin/productlist', element: <ProductListScreen /> },
 		],
 	},
 ])
