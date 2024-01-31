@@ -58,7 +58,11 @@ const ProductListScreen = () => {
 					}}
 				>
 					<Typography variant='h4'>Product List</Typography>
-					<Button variant='outlined' onClick={createProductHandler}>
+					<Button
+						disabled={loadingCreate}
+						variant='outlined'
+						onClick={createProductHandler}
+					>
 						Create New Product
 					</Button>
 				</Box>
