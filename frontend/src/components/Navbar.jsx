@@ -113,7 +113,7 @@ const Navbar = () => {
 					)}
 
 					{userInfo && userInfo.isAdmin && (
-						<Button color='inherit' component={Link} to='/admin/orderlist'>
+						<Button color='inherit' component={Link} to='/admin'>
 							Dashboard
 						</Button>
 					)}
