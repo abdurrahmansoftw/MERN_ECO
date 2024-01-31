@@ -48,25 +48,17 @@ const ProductEditScreen = () => {
 	const updateHandleSubmit = async (event) => {
 		event.preventDefault()
 
-		try {
-			await updateProduct({
-				productId,
-				name,
-				price,
-				image,
-				brand,
-				category,
-				countInStock,
-				description,
-			}).unwrap()
-			refetch()
-			navigate('/admin/productlist')
-		} catch (error) {
-			console.log(error)
+		const updatedProduct = {
+			_id: productId,
+			name,
+			price,
+			image,
+			brand,
+			category,
+			countInStock,
+			description,
 		}
 	}
-
-	console.log(product)
 	return (
 		<React.Fragment>
 			<Button component={Link} to='/admin/productlist'>
