@@ -59,7 +59,7 @@ const ProductEditScreen = () => {
 			description,
 		}
 		const result = await updateProduct(updatedProduct).unwrap()
-		if (result.error) {
+		if (result.error) { 
 			toast.error(result.error)
 		} else {
 			toast.success('Product Updated')
