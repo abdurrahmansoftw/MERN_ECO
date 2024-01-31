@@ -1,4 +1,5 @@
-import EditIcon from '@mui/icons-material/Edit'
+import SyncIcon from '@mui/icons-material/Sync'
+import UploadFileIcon from '@mui/icons-material/UploadFile'
 import { Avatar, Box, Button, Grid, TextField, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { Link, redirect, useNavigate, useParams } from 'react-router-dom'
@@ -72,8 +73,17 @@ const ProductEditScreen = () => {
 		}
 	}
 
-	const handleUpload = async (event) => {
-		console.log(event.target.files[0])
+	const UploadFileHandler = async (event) => {
+		const file = event.target.files[0]
+		const formData = new FormData()
+		formData.append('image', file)
+
+		const result = await uploadProductImage(formData).unwrap()
+		if (result.error) {
+			toast.error(result.error)
+		} else {
+			setImage(result)
+		}
 	}
 
 	return (
@@ -91,7 +101,7 @@ const ProductEditScreen = () => {
 					}}
 				>
 					<Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-						<EditIcon />
+						<SyncIcon />
 					</Avatar>
 					<Typography component='h1' variant='h5'>
 						Update Product
@@ -137,9 +147,9 @@ const ProductEditScreen = () => {
 								disabled={loadingUpload}
 								variant='outlined'
 								color='primary'
-								onClick={handleUpload}
+								onClick={UploadFileHandler}
 							>
-								select image
+								<UploadFileIcon /> Upload Image
 							</Button>
 						</div>
 
