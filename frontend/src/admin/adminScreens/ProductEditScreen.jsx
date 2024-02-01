@@ -112,6 +112,9 @@ const ProductEditScreen = () => {
 					<Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
 						<SyncIcon />
 					</Avatar>
+					<Button component={Link} to='/admin/productlist'>
+						Go Back
+					</Button>
 					<Typography component='h1' variant='h5'>
 						Update Product
 					</Typography>
