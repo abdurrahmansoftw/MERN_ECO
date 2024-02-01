@@ -100,9 +100,6 @@ const ProductEditScreen = () => {
 
 	return (
 		<React.Fragment>
-			<Button component={Link} to='/admin/productlist'>
-				Go Back
-			</Button>
 			<FromContainer>
 				<Box
 					sx={{
